@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: tripplan_production
-  username: tripplan
-  password: <%= ENV['TRIPPLAN_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+#  database: tripplan_production
+#  username: tripplan
+#  password: <%= ENV['TRIPPLAN_DATABASE_PASSWORD'] %>
