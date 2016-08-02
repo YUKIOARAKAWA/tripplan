@@ -48,3 +48,5 @@ end
 gem 'devise'
 
 gem 'geocoder'
+
+gem 'gmaps4rails'
