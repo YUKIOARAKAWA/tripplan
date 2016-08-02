@@ -10,6 +10,7 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @place = Place.new
     @places = @plan.places
     @hash = Gmaps4rails.build_markers(@places) do |user, marker|
       marker.lat user.latitude
