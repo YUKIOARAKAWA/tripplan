@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<h3><プラン名></h3>
+<p>
+  <strong>Area:</strong>
+  <%= @plan.area.name %>
+</p>
 <p>
   <strong>Name:</strong>
   <%= @plan.name %>
@@ -15,10 +20,6 @@
   <%= @plan.end_date %>
 </p>
 
-<p>
-  <strong>Area:</strong>
-  <%= @plan.area.name %>
-</p>
 
 <h3><行く場所></h3>
     <% @places.each do |place| %>
@@ -33,20 +34,20 @@
 <%= link_to 'Back', plans_path %>
 
 
-テスト
+
 
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
-
-
+<br><br><br><br><br>
 <script type="text/javascript">
   handler = Gmaps.build('Google');
+  defo = new google.maps.LatLng( 39.0686606 , 141.3507552 );
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(12);
-    handler.map.centerOn(marker);
+    handler.getMap().setZoom(5);
+    handler.map.centerOn(defo);
   });
 </script>
