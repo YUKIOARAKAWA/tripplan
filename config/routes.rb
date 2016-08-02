@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :places
   resources :plans
   devise_for :users
   get 'top/index'
