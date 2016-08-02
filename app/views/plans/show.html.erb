@@ -20,5 +20,14 @@
   <%= @plan.area.name %>
 </p>
 
+<h3><行く場所></h3>
+    <% @places.each do |place| %>
+    <td><%= place.route %></td><br>
+    <td><%= place.user.email %></td><br>
+    <td><%= place.address %></td><br>
+    <td><%= place.latitude %></td><br>
+    <td><%= place.longitude %></td><br><br>
+<% end %>
+
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
