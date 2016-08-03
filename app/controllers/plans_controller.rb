@@ -22,6 +22,7 @@ class PlansController < ApplicationController
 
   def add
     @place = Place.new(place_params)
+    @place.set_route(params[:place][:plan_id])
     respond_to do |format|
       if @place.save
         format.html { redirect_to ({action: 'show', id: @place.plan.id }), notice: 'Place was successfully created.' }
