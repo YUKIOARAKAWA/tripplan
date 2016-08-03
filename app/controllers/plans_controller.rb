@@ -16,7 +16,8 @@ class PlansController < ApplicationController
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.email}<br>#{}"
+      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.email}<br>
+                        行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
       marker.json({title: place.address})
     end
   end
