@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:show, :member, :edit, :update, :destroy]
 
   # GET /plans
   # GET /plans.json
@@ -13,6 +13,7 @@ class PlansController < ApplicationController
     @place = Place.new
     @place.pins.build
     @places = @plan.places
+    @members = @plan.users
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
@@ -36,6 +37,25 @@ class PlansController < ApplicationController
     end
   end
 
+  def member
+    @plan_user = @plan.plan_users.build
+  end
+
+  def add_member
+    @plan_user = PlanUser.new(plan_user_params)
+
+    respond_to do |format|
+      if @plan_user.save
+        format.html { redirect_to ({action: 'member', id: @plan_user.plan_id }) }
+        format.json { render :show, status: :created, location: @plan_user }
+      else
+        format.html { render :member }
+        format.json { render json: @plan_user.errors, status: :unprocessable_entity }
+      end
+    end
+
+
+  end
   # GET /plans/new
   def new
     @plan = Plan.new
@@ -52,7 +72,8 @@ class PlansController < ApplicationController
 
     respond_to do |format|
       if @plan.save
-        format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
+        format.html { redirect_to ({action: 'member', id: @plan.id }) }
+      # format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
         format.html { render :new }
@@ -100,4 +121,9 @@ class PlansController < ApplicationController
       params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route,
                                     pins_attributes: [:comment, :want])
     end
+
+    def plan_user_params
+      params.require(:plan_user).permit(:user_id, :plan_id)
+    end
+
 end

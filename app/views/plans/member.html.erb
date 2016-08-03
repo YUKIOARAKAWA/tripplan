@@ -1,0 +1,25 @@
+<%= form_for @plan_user, url: add_member_plans_path do |f| %>
+  <% if @plan_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plan_user.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+      <% @plan_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.collection_select :user_id, User.all, :id, :email %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :plan_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
