@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resources :plans do
     collection do
       post 'add'
+      post 'add_member'
+    end
+    member do
+      get 'member'
     end
   end
   devise_for :users
