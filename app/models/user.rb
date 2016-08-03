@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :places
   has_many :pins
+  has_many :plan_users
+  has_many :plans, through: :plan_users
 end
