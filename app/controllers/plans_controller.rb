@@ -11,11 +11,12 @@ class PlansController < ApplicationController
   # GET /plans/1.json
   def show
     @place = Place.new
+    @place.pins.build
     @places = @plan.places
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      marker.infowindow "場所：#{place.address}<br>登録者：#{place.user.email}"
+      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.email}<br>#{}"
       marker.json({title: place.address})
     end
   end
@@ -23,6 +24,7 @@ class PlansController < ApplicationController
   def add
     @place = Place.new(place_params)
     @place.set_route(params[:place][:plan_id])
+    binding.pry
     respond_to do |format|
       if @place.save
         format.html { redirect_to ({action: 'show', id: @place.plan.id }), notice: 'Place was successfully created.' }
@@ -95,6 +97,7 @@ class PlansController < ApplicationController
     end
 
     def place_params
-      params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route)
+      params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route,
+                                    pins_attributes: [:comment, :want])
     end
 end

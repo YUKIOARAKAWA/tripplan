@@ -85,6 +85,19 @@
   <div class="field">
     <%= f.hidden_field :route %>
   </div>
+
+    <%= f.fields_for :pins do |c| %>
+    <div class="field">
+      <%= c.label :comment %><br>
+      <%= c.text_field :comment %>
+    </div>
+    <div class="field">
+      <%= c.label :want %><br>
+      <%= c.radio_button :want, 0 %>低
+      <%= c.radio_button :want, 1, :checked => "checked" %>中
+      <%= c.radio_button :want, 2 %>高
+    </div>
+    <% end %>
   <div class="actions">
     <%= f.submit value: "追加"%>
   </div>
