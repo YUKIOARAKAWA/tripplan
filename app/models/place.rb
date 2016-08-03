@@ -5,6 +5,8 @@ class Place < ActiveRecord::Base
   belongs_to :user
   belongs_to :plan
   has_many :pins
+  
+  accepts_nested_attributes_for :pins
 
   #　追加されたplaceをプランの最後の設定する
   def set_route(plan_id)
