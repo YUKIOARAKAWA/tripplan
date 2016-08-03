@@ -12,11 +12,11 @@ class PlansController < ApplicationController
   def show
     @place = Place.new
     @places = @plan.places
-    @hash = Gmaps4rails.build_markers(@places) do |user, marker|
-      marker.lat user.latitude
-      marker.lng user.longitude
-      marker.infowindow user.address
-      marker.json({title: user.address})
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+      marker.infowindow "場所：#{place.address}<br>登録者：#{place.user.email}"
+      marker.json({title: place.address})
     end
   end
 
