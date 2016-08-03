@@ -20,6 +20,19 @@ class PlansController < ApplicationController
     end
   end
 
+  def add
+    @place = Place.new(place_params)
+    respond_to do |format|
+      if @place.save
+        format.html { redirect_to ({action: 'show', id: @place.plan.id }), notice: 'Place was successfully created.' }
+        format.json { render :show, status: :created, location: @place }
+      else
+        format.html { render :new }
+        format.json { render json: @place.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /plans/new
   def new
     @plan = Plan.new
@@ -78,5 +91,9 @@ class PlansController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
       params.require(:plan).permit(:name, :start_date, :end_date, :area_id)
+    end
+
+    def place_params
+      params.require(:place).permit(:user_id, :plan_id, :address, :latitude, :longitude, :route)
     end
 end
