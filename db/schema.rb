@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803072234) do
+ActiveRecord::Schema.define(version: 20160803123107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 20160803072234) do
   add_index "places", ["plan_id"], name: "index_places_on_plan_id", using: :btree
   add_index "places", ["user_id"], name: "index_places_on_user_id", using: :btree
 
+  create_table "plan_users", force: :cascade do |t|
+    t.integer  "plan_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "plan_users", ["plan_id"], name: "index_plan_users_on_plan_id", using: :btree
+  add_index "plan_users", ["user_id"], name: "index_plan_users_on_user_id", using: :btree
+
   create_table "plans", force: :cascade do |t|
     t.string   "name"
     t.date     "start_date"
@@ -88,5 +98,7 @@ ActiveRecord::Schema.define(version: 20160803072234) do
   add_foreign_key "pins", "users"
   add_foreign_key "places", "plans"
   add_foreign_key "places", "users"
+  add_foreign_key "plan_users", "plans"
+  add_foreign_key "plan_users", "users"
   add_foreign_key "plans", "areas"
 end
