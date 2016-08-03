@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :places
-  resources :plans
+  resources :plans do
+    collection do
+      post 'add'
+    end
+  end
   devise_for :users
   get 'top/index'
   resources :blogs

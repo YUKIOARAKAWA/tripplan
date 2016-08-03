@@ -54,7 +54,7 @@
 
 
 <h3>新しく場所を追加する</h3>
-<%= form_for @place, url: places_path, method: "post" do |f| %>
+<%= form_for @place, url: add_plans_path, method: "post" do |f| %>
   <% if @place.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
