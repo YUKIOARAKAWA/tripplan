@@ -1,2 +1,4 @@
-<h1>Mypage#top</h1>
-<p>Find me in app/views/mypage/top.html.erb</p>
+<h3><参加中のプラン></h3>
+  <% @myplans.each do |myplan| %>
+    ・<td><%=link_to myplan.name, plan_path(myplan)%></td><br>
+  <% end %>
