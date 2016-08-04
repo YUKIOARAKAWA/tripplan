@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'mypage/top'
+
+  get 'mypage/xxx'
+
   resources :places
   resources :plans do
     collection do
