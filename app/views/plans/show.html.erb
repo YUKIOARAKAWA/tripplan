@@ -26,14 +26,28 @@
   <% end %>
 
 <h3><行く場所></h3>
+<table class = "table">
+<thead>
+  <tr>
+  <th>順番</th>
+  <th>登録者</th>
+  <th>場所</th>
+  <th>緯度</th>
+  <th>経度</th>
+  <tr>
+</thead>
+<tbody>
   <% @places.each do |place| %>
-    <td><%= place.route %></td><br>
-    <td><%= place.user.email %></td><br>
-    <td><%= place.address %></td><br>
-    <td><%= place.latitude %></td><br>
-    <td><%= place.longitude %></td><br><br>
+  <tr>
+    <td><%= place.route %></td>
+    <td><%= place.user.email %></td>
+    <td><%= place.address %></td>
+    <td><%= place.latitude %></td>
+    <td><%= place.longitude %></td>
+  </tr>
   <% end %>
-
+<tbody>
+</table>
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
 

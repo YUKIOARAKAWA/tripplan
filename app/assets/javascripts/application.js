@@ -16,6 +16,8 @@
 //= require_tree .
 //= require underscore
 //= require gmaps/google
+//= require jquery
+//= require bootstrap-sprockets
 
 window.onload = function(){
 
