@@ -2,3 +2,6 @@
   <% @myplans.each do |myplan| %>
     ・<td><%=link_to myplan.name, plan_path(myplan)%></td><br>
   <% end %>
+
+<br>
+<td><%=link_to "新規プラン作成", new_plan_path%></td><br>

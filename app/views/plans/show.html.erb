@@ -1,62 +1,98 @@
 <p id="notice"><%= notice %></p>
-<button type="button" id = "maps8_polylines_yonago_to_tottori">クリック（結ぶ）</button><br>
-<h3><プラン名></h3>
-<p>
-  <strong>Area:</strong>
-  <%= @plan.area.name %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= @plan.name %>
-</p>
+<!-- <button type="button" id = "maps8_polylines_yonago_to_tottori">クリック（結ぶ）</button><br>-->
 
-<p>
-  <strong>Start date:</strong>
-  <%= @plan.start_date %>
-</p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @plan.end_date %>
-</p>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+      <div class="panel panel-warning">
+      	<div class="panel-heading">
+      		プラン
+      	</div>
+      	<div class="panel-body">
+          <p>
+            <strong>Area:</strong>
+            <%= @plan.area.name %>
+          </p>
+          <p>
+            <strong>Name:</strong>
+            <%= @plan.name %>
+          </p>
 
-<h3><メンバー></h3>
-  <% @members.each do |member| %>
-    ・<td><%= member.email %></td><br>
-  <% end %>
+          <p>
+            <strong>Start date:</strong>
+            <%= @plan.start_date %>
+          </p>
 
-<h3><行く場所></h3>
-<table class = "table">
-<thead>
-  <tr>
-  <th>順番</th>
-  <th>登録者</th>
-  <th>場所</th>
-  <th>緯度</th>
-  <th>経度</th>
-  <tr>
-</thead>
-<tbody>
-  <% @places.each do |place| %>
-  <tr>
-    <td><%= place.route %></td>
-    <td><%= place.user.email %></td>
-    <td><%= place.address %></td>
-    <td><%= place.latitude %></td>
-    <td><%= place.longitude %></td>
-  </tr>
-  <% end %>
-<tbody>
-</table>
+          <p>
+            <strong>End date:</strong>
+            <%= @plan.end_date %>
+          </p>
+      	</div>
+      </div>
+    </div>
+		<div class="col-md-6">
+      <div class="panel panel-info">
+      	<div class="panel-heading">
+      		メンバー
+      	</div>
+      	<div class="panel-body">
+          <% @members.each do |member| %>
+            ・<td><%= member.email %></td><br>
+          <% end %>
+          <td><%=link_to "メンバーを変更する", member_plan_path(@plan)%></td><br>
+      	</div>
+      </div>
+    </div>
+	</div>
+</div>
+
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6">
+      <div style='width: 700px;'>
+        <div id="map" style='width: 650px; height: 400px;'></div>
+      </div>
+    </div>
+		<div class="col-md-6">
+      <table class = "table">
+      <thead>
+        <tr>
+        <th>順番</th>
+        <th>登録者</th>
+        <th>場所</th>
+        <th>緯度</th>
+        <th>経度</th>
+        <tr>
+      </thead>
+      <tbody>
+        <% @places.each do |place| %>
+        <tr>
+          <td><%= place.route %></td>
+          <td><%= place.user.email %></td>
+          <td><%= place.address %></td>
+          <td><%= place.latitude %></td>
+          <td><%= place.longitude %></td>
+        </tr>
+        <% end %>
+      <tbody>
+      </table>
+    </div>
+	</div>
+</div>
+
+
+
+
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
 
 
 
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
 
 <script type="text/javascript">
   handler = Gmaps.build('Google');
@@ -70,31 +106,29 @@
   });
 
 
-polylines = [];
-  document.getElementById( 'maps8_polylines_yonago_to_tottori' ).onclick = function( e )
-  {
-    /* 関係ない動作を無効化 */
-    var e = e || window.event ;
-    e.preventDefault() ;
-    e.stopPropagation() ;
-
-poli = [];
+//polylines = [];
+//  document.getElementById( 'maps8_polylines_yonago_to_tottori' ).onclick = function( e )
+//  {
+//    /* 関係ない動作を無効化 */
+//    var e = e || window.event ;
+//    e.preventDefault() ;
+//    e.stopPropagation() ;
+//
+//poli = [];
 //for (var i = 1; i < <%= @point%>; i++) {
 //  poli.push(new google.maps.LatLng( @point[i][1], @point[i][0] ))
 //  alert(poli);
 //}
-//  alert(<%= @point[0][1]%>);
     // 1つ目の線(Polyline)のインスタンスを作成する
     // [ new google.maps.Polyline() ]の引数にオプションオブジェクトを指定する
-    polylines[0] = new google.maps.Polyline( {
-    	map: handler.getMap() ,
-    	path: [
-        new google.maps.LatLng( 35.5, 134.25 ) ,
-    		new google.maps.LatLng( 35.4, 133.31 ) ,
-    	] ,
-    } ) ;
-  }
-
+//    polylines[0] = new google.maps.Polyline( {
+//    	map: handler.getMap() ,
+//    	path: [
+//        new google.maps.LatLng( 35.5, 134.25 ) ,
+//    		new google.maps.LatLng( 35.4, 133.31 ) ,
+//    	] ,
+//    } ) ;
+//  }
 
 </script>
 
