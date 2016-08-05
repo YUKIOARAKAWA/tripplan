@@ -21,6 +21,16 @@ class PlansController < ApplicationController
                         行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
       marker.json({title: place.address})
     end
+
+    @point = []
+
+    @hash.each do |hash|
+      temp= []
+      temp.push(hash[:lat])
+      temp.push(hash[:lng])
+      @point.push(temp)
+    end
+
   end
 
   def add

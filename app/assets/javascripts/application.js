@@ -243,7 +243,7 @@ document.getElementById( 'geo' ).onclick = function( e )
       }) ;
       markerlist.push(result[0].geometry.location);
       //console.log(markerlist);
-
+alert(result[0].geometry.location)
       var infowindow=new google.maps.InfoWindow({
                       content: "場所：" + document.getElementById( 'address' ).value + "<br>"
                       + "登録者：" + "ユーザA(⭐️⭐️⭐️)" + "<br>"
