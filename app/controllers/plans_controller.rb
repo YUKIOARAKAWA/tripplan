@@ -19,6 +19,11 @@ class PlansController < ApplicationController
       marker.lng place.longitude
       #なぜか地図に表示させるアイコン画像を変更できない。　一旦、コメントアウト
       #marker.picture url: "http://localhost:3000/assets/brandImage-c5a4b05ad064fd6f6f239053b47acba7d337f9b18e2cc7a1589b6a0ac331989e.png", width: 22, height: 22
+      marker.picture({
+                :url    => "/brandImage.png",
+                :width  => "300",
+                :height => "300"
+               })
       marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.email}<br>
                         行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
       marker.json({title: place.address})
