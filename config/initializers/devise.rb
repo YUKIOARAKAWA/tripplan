@@ -269,5 +269,9 @@ Devise.setup do |config|
 9317d945357d1aaab3fd4654'
 
   # フェイスブックログイン用の設定
-  config.omniauth :facebook, '653177598183157', 'afdb8b6908558812eeaa919b5f9e9827'
+  if Rails.env.production?
+    config.omniauth :facebook, '1166392740088654', 'c61038904bf35c9839a59243ee7ddfa6'
+  else
+    config.omniauth :facebook, '653177598183157', 'afdb8b6908558812eeaa919b5f9e9827'
+  end
 end

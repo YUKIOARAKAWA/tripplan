@@ -17,15 +17,14 @@ class PlansController < ApplicationController
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
       marker.lng place.longitude
-      #なぜか地図に表示させるアイコン画像を変更できない。　一旦、コメントアウト
-      #marker.picture url: "http://localhost:3000/assets/brandImage-c5a4b05ad064fd6f6f239053b47acba7d337f9b18e2cc7a1589b6a0ac331989e.png", width: 22, height: 22
-      marker.picture({
-                :url    => "/brandImage.png",
-                :width  => "300",
-                :height => "300"
-               })
-      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.email}<br>
+      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
                         行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+      #marker.picture({
+      #          :url    => "/brandImage.png",
+                #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
+      #          :width  => "200",
+      #          :height => "200"
+      #         })
       marker.json({title: place.address})
     end
 
@@ -43,11 +42,17 @@ class PlansController < ApplicationController
     @place = Place.new(place_params)
     @place.set_route(params[:place][:plan_id])
     respond_to do |format|
-      if @place.save
-        format.html { redirect_to ({action: 'show', id: @place.plan.id }), notice: 'Place was successfully created.' }
-        format.json { render :show, status: :created, location: @place }
+      if @place.valid?
+        if @place.latitude.nil?
+          format.html { redirect_to ({action: 'show', id: @place.plan.id }), alert: '存在する場所を入力してください' }
+        else
+          @place.save
+          format.html { redirect_to ({action: 'show', id: @place.plan.id }), notice: '追加しました' }
+          format.json { render :show, status: :created, location: @place }
+        end
       else
-        format.html { render :new }
+        #format.html { render :new }
+        format.html { redirect_to ({action: 'show', id: @place.plan.id }), alert: '場所が入力されていません' }
         format.json { render json: @place.errors, status: :unprocessable_entity }
       end
     end
@@ -86,9 +91,9 @@ class PlansController < ApplicationController
   # POST /plans.json
   def create
     @plan = Plan.new(plan_params)
-
     respond_to do |format|
       if @plan.save
+        PlanUser.create(plan_id: @plan.id, user_id: current_user.id)
         format.html { redirect_to ({action: 'member', id: @plan.id }) }
       # format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }

@@ -28,6 +28,6 @@
     <%= f.collection_select :area_id, Area.all, :id, :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-primary', value: "次へ" %>
   </div>
 <% end %>

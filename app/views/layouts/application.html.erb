@@ -54,8 +54,16 @@
       </nav>
     </header>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice.present? %>
+      <div class = "alert alert-success">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class = "alert alert-danger">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
 
 <%= yield %>
 

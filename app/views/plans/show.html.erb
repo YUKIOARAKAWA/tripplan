@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6">
@@ -9,23 +7,25 @@
       	</div>
       	<div class="panel-body">
           <p>
-            <strong>Area:</strong>
+            <strong>エリア:</strong>
             <%= @plan.area.name %>
           </p>
           <p>
-            <strong>Name:</strong>
+            <strong>プラン名:</strong>
             <%= @plan.name %>
           </p>
 
           <p>
-            <strong>Start date:</strong>
+            <strong>開始日:</strong>
             <%= @plan.start_date %>
           </p>
 
           <p>
-            <strong>End date:</strong>
+            <strong>終了日:</strong>
             <%= @plan.end_date %>
           </p>
+
+					<%= link_to 'プランを編集する', edit_plan_path(@plan) %>
       	</div>
       </div>
     </div>
@@ -36,7 +36,8 @@
       	</div>
       	<div class="panel-body">
           <% @members.each do |member| %>
-            ・<td><%= member.email %></td><br>
+            <td><%= member.name %></td><br>
+						<%= profile_img(member) %>
           <% end %>
           <td><%=link_to "メンバーを変更する", member_plan_path(@plan)%></td><br>
       	</div>
@@ -70,23 +71,19 @@
         <% @places.each do |place| %>
         <tr>
           <td><%= place.route %></td>
-          <td><%= place.user.email %></td>
+          <td><%= place.user.name %></td>
           <td><%= place.address %></td>
           <!-- 緯度・経度は表示しない<td><%= place.latitude %></td>-->
           <!--緯度・経度は表示しない<td><%= place.longitude %></td>-->
+					<td><%= link_to '削除', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
       <tbody>
       </table>
+			<button type="button" id = "create_routes" class = 'btn btn-primary'>経路を作成！</button><br>
     </div>
 	</div>
 </div>
-
-
-
-
-<%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', plans_path %>
 
 
 
@@ -129,7 +126,7 @@
 
     <%= f.fields_for :pins do |c| %>
     <div class="field">
-      <%= c.label :comment %><br>
+      <%= c.label :comment %>(任意)<br>
       <%= c.text_field :comment %>
     </div>
     <div class="field">
@@ -140,10 +137,10 @@
     </div>
     <% end %>
   <div class="actions">
-    <%= f.submit value: "追加"%>
+    <%= f.submit value: "追加", class: 'btn btn-primary'%>
   </div>
 <% end %>
-<button type="button" id = "create_routes">経路を作成！</button><br>
+
 
 
 

@@ -1,3 +1,4 @@
+<h1>STEP2　参加するメンバーを決めましょう!</h1>
 <%= form_for @plan_user, url: add_member_plans_path do |f| %>
   <% if @plan_user.errors.any? %>
     <div id="error_explanation">
@@ -11,23 +12,25 @@
     </div>
   <% end %>
 
-<h3><メンバー></h3>
-  <% @members.each do |member| %>
-    ・<td><%= member.email %></td><br>
-  <% end %>
-
 <br>
-プランに参加するメンバーを選択してください！！
+プランに参加するメンバーを以下から選択してください。
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.collection_select :user_id, User.all, :id, :email %>
+    <%= f.collection_select :user_id, User.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.hidden_field :plan_id %>
   </div>
   <div class="actions">
-    <%= f.submit value: "メンバーを追加"%>
+    <%= f.submit class: 'btn btn-success', value: "メンバーを追加"%>
   </div>
 <% end %>
 
-<td><%=link_to "このメンバーでプランを作成する", plan_path(@plan_user.plan_id)%></td><br>
+<br>
+<h3><メンバー></h3>
+  <% @members.each do |member| %>
+    <td><%= member.name %></td><br>
+    <%= profile_img(member) %>
+  <% end %>
+  <br>
+<td><%=link_to "このメンバーでプランを作成する", plan_path(@plan_user.plan_id), class: 'btn btn-primary'%></td><br>
+※ メンバーはあとからでも変更することができます。
