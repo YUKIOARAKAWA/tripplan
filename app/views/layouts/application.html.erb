@@ -43,7 +43,7 @@
                 deviseにより自動で作成されてますので、rake routesで確認できます -->
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                <li><%= link_to "ようこそ #{current_user.email} さん", mypage_top_path %></li>
+                <li><%= link_to "ようこそ #{current_user.name} さん", mypage_top_path %></li>
               <% else %>
                 <li><%= link_to "サインイン", new_user_registration_path %></li>
                 <li><%= link_to "ログイン", new_user_session_path %></li>

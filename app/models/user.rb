@@ -25,11 +25,11 @@ def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
 
       if auth.info.email.nil?
         user = User.new(name: auth.extra.raw_info.name, provider: auth.provider, uid: auth.uid, email: User.create_unique_email, password: Devise.friendly_token[0,20])
-        user.skip_confirmation!
+        #user.skip_confirmation!
         user.save(validate: false)
       else
         user = User.new(name: auth.extra.raw_info.name, provider: auth.provider, uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0,20])
-        user.skip_confirmation!
+        #user.skip_confirmation!
         user.save(validate: false)
       end
     end
