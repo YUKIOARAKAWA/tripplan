@@ -59,5 +59,7 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass'
+gem 'bootstrap-social-rails'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
