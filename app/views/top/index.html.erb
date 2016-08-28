@@ -1,1 +1,37 @@
-<h2><%=  %></h2>
+<%= image_tag("/top.jpg", :size => "1400x600", :alt => "アイコン", class: 'img-responsive') %>
+
+
+
+<div class="text-center text-success lead">
+  <div>オリジナルの企画に参加して、どこにもない旅にでよう!!</div>
+</div>
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-md-3 col-xs-offset-1">
+      <p>週末のお料理教室から、秘境の大冒険まで。趣味の合う人達で出かけよう！</p>
+      <%= image_tag("/top.jpg", :size => " 1300x600", :alt => "アイコン", class: 'img-responsive img-rounded') %>
+    </div>
+
+		<div class="col-md-3 col-xs-offset-1">
+      <p>5000件以上の企画からお気に入りを見つけて、参加するだけ！</p><br>
+      <%= image_tag("/top.jpg", :size => " 100x100", :alt => "アイコン", class: 'img-responsive img-circle') %>
+    </div>
+
+    <div class="col-md-3 col-xs-offset-1">
+    </p>オリジナルの企画もゼロから作れます！</p>
+      <%= image_tag("/top.jpg", :size => " 500x500", :alt => "アイコン", class: 'img-responsive img-thumbnail') %>
+    </div>
+
+	</div>
+</div>
+
+<p>
+<a href = "/users/auth/facebook" class="btn btn-social btn-facebook">
+   <span class="fa fa-facebook">F</span> フェイスブックでログイン
+ </a>
+</p>
+
+<span class="fa fa-facebook">F<%= button_to 'フェイスブックでログイン',  user_facebook_omniauth_authorize_path, class: 'btn btn-social btn-facebook' %>
+</span>
