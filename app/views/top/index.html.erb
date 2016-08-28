@@ -1,6 +1,15 @@
 <%= image_tag("/top.jpg", :size => "1400x600", :alt => "アイコン", class: 'img-responsive') %>
 
 
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 col-xs-offset-4">
+      <a href = "/users/auth/facebook" class="btn btn-social btn-facebook" style="color:white">
+         <span class="fa fa-facebook">F</span> フェイスブックで新規登録ログイン
+       </a>
+    </div>
+	</div>
+</div>
 
 <div class="text-center text-success lead">
   <div>オリジナルの企画に参加して、どこにもない旅にでよう!!</div>
@@ -26,12 +35,3 @@
 
 	</div>
 </div>
-
-<p>
-<a href = "/users/auth/facebook" class="btn btn-social btn-facebook">
-   <span class="fa fa-facebook">F</span> フェイスブックでログイン
- </a>
-</p>
-
-<span class="fa fa-facebook">F<%= button_to 'フェイスブックでログイン',  user_facebook_omniauth_authorize_path, class: 'btn btn-social btn-facebook' %>
-</span>
