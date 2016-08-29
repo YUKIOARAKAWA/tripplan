@@ -13,7 +13,7 @@ module ApplicationHelper
       #img_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     #end
     # puts img_url
-    image_tag(img_url, alt: user.name, class: 'img-responsive js-replace-no-image', width: '100',height: '100', margin: '1px')
+    image_tag(img_url, alt: user.name, class: 'img-responsive js-replace-no-image img-responsive img-circle', width: '100',height: '100', margin: '1px')
   end
 
 end

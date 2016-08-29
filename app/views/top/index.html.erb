@@ -35,3 +35,16 @@
 
 	</div>
 </div>
+
+
+<div class="text-center lead">
+  <div>様々なプランを参考にしながらマイプランを作成できます。</div>
+</div>
+
+<div class="text-center">
+<p>現在の総プラン数:<span class = "text-danger"><%= @plans.count %></span></p>
+
+<% @plans.each do |plan| %>
+  ・<td><%=link_to plan.name, plan_path(plan)%></td><br>
+<% end %>
+</div>
