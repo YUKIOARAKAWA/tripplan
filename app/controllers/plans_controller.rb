@@ -90,7 +90,6 @@ class PlansController < ApplicationController
   # POST /plans
   # POST /plans.json
   def create
-    binding.pry
     @plan = Plan.new(plan_params)
     respond_to do |format|
       if @plan.save

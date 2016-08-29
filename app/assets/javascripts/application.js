@@ -20,11 +20,38 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+//= require moment/ja.js
 
-var data = {'data-date-format': 'YYYY-MM-DD hh:mm:ss' };
+
+// プランの開始日の設定(datetimepicker)
+var data = {'data-date-format': 'yyyy-MM-dd' };
 $(function(){
-  $('.datepicker').attr(data);
-  $('.datepicker').datetimepicker();
+  $('.startdatepicker').attr(data);
+  $('.startdatepicker').datetimepicker({
+    locale: 'ja',
+    format: 'YYYY/MM/DD'
+  });
+});
+
+// プランの終了日の設定(datetimepicker)
+var data = {'data-date-format': 'yyyy-MM-dd' };
+$(function(){
+  $('.enddatepicker').attr(data);
+  $('.enddatepicker').datetimepicker({
+    locale: 'ja',
+    format: 'YYYY/MM/DD',
+    useCurrent: false
+  });
+});
+
+// 開始日 > 終了日　は入力できないように表示制御(datetimepicker)
+$(function(){
+  $('.startdatepicker').on("dp.change", function (e) {
+     $('.enddatepicker').data("DateTimePicker").minDate(e.date);
+   });
+   $("#datetimepicker7").on("dp.change", function (e) {
+     $('.enddatepicker').data("DateTimePicker").maxDate(e.date);
+   });
 });
 
 window.onload = function(){
