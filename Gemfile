@@ -63,3 +63,6 @@ gem 'bootstrap-social-rails'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails'
