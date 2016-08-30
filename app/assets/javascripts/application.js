@@ -49,9 +49,28 @@ $(function(){
   $('.startdatepicker').on("dp.change", function (e) {
      $('.enddatepicker').data("DateTimePicker").minDate(e.date);
    });
-   $("#datetimepicker7").on("dp.change", function (e) {
-     $('.enddatepicker').data("DateTimePicker").maxDate(e.date);
+   $('.enddatepicker').on("dp.change", function (e) {
+     $('.startdatepicker').data("DateTimePicker").maxDate(e.date);
    });
+});
+
+
+// 場所のFROMの設定(datetimepicker)
+var data = {'data-date-format': 'YYYY-MM-DD HH:mm:ss' };
+$(function(){
+//  $('.startdatetimepicker').attr(data);
+  $('.startdatetimepicker').datetimepicker(
+  );
+});
+
+// 場所のTOの設定(datetimepicker)
+var data = {'data-date-format': 'YYYY-MM-DD HH:mm:ss' };
+$(function(){
+  $('.enddatetimepicker').attr(data);
+  $('.enddatetimepicker').datetimepicker({
+    locale: 'ja',
+    format: 'YYYY-MM-DD HH:mm:ss'
+  });
 });
 
 window.onload = function(){
