@@ -1,4 +1,12 @@
-<h1>STEP2　参加するメンバーを決めましょう!</h1>
+
+
+<div class="progress">
+	<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width: 50%;">
+		 50%
+	</div>
+</div>
+
+<h1>STEP2　続いて参加するメンバーを決めましょう!</h1>
 <%= form_for @plan_user, url: add_member_plans_path do |f| %>
   <% if @plan_user.errors.any? %>
     <div id="error_explanation">
