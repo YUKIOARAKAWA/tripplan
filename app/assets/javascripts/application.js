@@ -58,9 +58,11 @@ $(function(){
 // 場所のFROMの設定(datetimepicker)
 var data = {'data-date-format': 'YYYY-MM-DD HH:mm:ss' };
 $(function(){
-//  $('.startdatetimepicker').attr(data);
-  $('.startdatetimepicker').datetimepicker(
-  );
+  $('.startdatetimepicker').attr(data);
+  $('.startdatetimepicker').datetimepicker({
+    locale: 'ja',
+    format: 'YYYY-MM-DD HH:mm:ss'
+  });
 });
 
 // 場所のTOの設定(datetimepicker)

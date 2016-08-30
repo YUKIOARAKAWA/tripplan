@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       post 'add'
       post 'add_member'
+      post 'datetime'
     end
     member do
       get 'member'
