@@ -75,9 +75,22 @@ class PlansController < ApplicationController
         format.json { render json: @plan_user.errors, status: :unprocessable_entity }
       end
     end
-
-
   end
+
+  def datetime
+    @place = Place.find(datatime_params[:id])
+    respond_to do |format|
+      if @place.update(datatime_params)
+        format.html { redirect_to plan_path(@place.plan_id), notice: '時間を更新しました' }
+        format.json { render :show, status: :ok, location: @plan }
+      else
+        #未完成
+        format.html { render :edit }
+        format.json { render json: @plan.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /plans/new
   def new
     @plan = Plan.new
@@ -146,6 +159,10 @@ class PlansController < ApplicationController
 
     def plan_user_params
       params.require(:plan_user).permit(:user_id, :plan_id)
+    end
+
+    def datatime_params
+      params.require(:place).permit(:from, :to, :id)
     end
 
 end
