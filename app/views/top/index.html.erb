@@ -1,6 +1,6 @@
 <%= image_tag("/top.jpg", :size => "1400x600", :alt => "アイコン", class: 'img-responsive') %>
 
-
+<p>tripplan-あなたの旅行をもっと楽しく！</p>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4 col-xs-offset-4">
@@ -11,26 +11,27 @@
 	</div>
 </div>
 
+
 <div class="text-center text-success lead">
-  <div>オリジナルの企画に参加して、どこにもない旅にでよう!!</div>
+  <div>tripplanは、あなたの旅の計画を最大限サポートします。</div>
 </div>
 
 <div class="container">
 	<div class="row">
 
 		<div class="col-md-3 col-xs-offset-1">
-      <p>週末のお料理教室から、秘境の大冒険まで。趣味の合う人達で出かけよう！</p>
-      <%= image_tag("/top.jpg", :size => " 1300x600", :alt => "アイコン", class: 'img-responsive img-rounded') %>
+      <p>過去の旅行者のデータをもとに、無駄のないプランを計画できます。</p>
+      <%= image_tag("/yama.jpg", :size => "300x300", :alt => "アイコン", class: 'img-responsive img-rounded') %>
     </div>
 
 		<div class="col-md-3 col-xs-offset-1">
-      <p>5000件以上の企画からお気に入りを見つけて、参加するだけ！</p><br>
-      <%= image_tag("/top.jpg", :size => " 100x100", :alt => "アイコン", class: 'img-responsive img-circle') %>
+      <p>行きたい場所を追加していくだけであなたに最適な旅行プランが完成します！</p><br>
+      <%= image_tag("/map.jpg", :size => "500x500", :alt => "アイコン", class: 'img-responsive img-circle') %>
     </div>
 
     <div class="col-md-3 col-xs-offset-1">
-    </p>オリジナルの企画もゼロから作れます！</p>
-      <%= image_tag("/top.jpg", :size => " 500x500", :alt => "アイコン", class: 'img-responsive img-thumbnail') %>
+    </p>友達同士で一つのプランを作成することもできます！</p>
+      <%= image_tag("/friend.jpg", :size => "500x500", :alt => "アイコン", class: 'img-responsive img-thumbnail') %>
     </div>
 
 	</div>
@@ -38,13 +39,33 @@
 
 
 <div class="text-center lead">
-  <div>様々なプランを参考にしながらマイプランを作成できます。</div>
+  <div>他の旅行者のプランを参考に、イメージを膨らませましょう</div>
 </div>
 
 <div class="text-center">
 <p>現在の総プラン数:<span class = "text-danger"><%= @plans.count %></span></p>
+</div>
 
-<% @plans.each do |plan| %>
-  ・<td><%=link_to plan.name, plan_path(plan)%></td><br>
-<% end %>
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<% @plans.each do |plan| %>
+		<div class="col-md-3 col-xs-offset-1">
+
+			<div class="media">
+				<a class="media-left" href="#">
+					<%= image_tag("/tokyo.jpg", :size => "200x200", :alt => "アイコン", class: 'img-responsive') %>
+				</a>
+				<div class="media-rigth">
+					<h4 class="media-heading">
+						<%=link_to plan.name, plan_path(plan)%>
+					</h4>
+					メンバー (<%= plan.plan_users.count %>)
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </div>
