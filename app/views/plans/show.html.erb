@@ -291,6 +291,8 @@ alert("可変");
    function(response,status){
    if (status == google.maps.DirectionsStatus.OK){
 	alert("第一地点と第二地点の距離は" + response.routes[0].legs[0].distance.value / 1000 + "キロメートルあります");
+	alert("第一地点と第二地点の時間は" + response.routes[0].legs[0].duration.value / 60 + "分かかります");
+	alert(response.routes[0].legs[1]);
    directionsDisplay.setDirections(response);}
    });
  }
