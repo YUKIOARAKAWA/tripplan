@@ -164,6 +164,13 @@
 <% end %>
 
 
+<button type="button" id = "create_routes_time">経路作成(道に沿った)</button>
+
+ここにdistanceの結果を描画する
+<div id="directions-result" style="width:600px; height:1000px"></div>
+ここにdistanceの結果を描画する
+
+
 
 
 
@@ -179,6 +186,7 @@
   });
 
 
+// 場所を線で結ぶメソッド（直線）
 polylines = [];
  document.getElementById( 'create_routes' ).onclick = function( e )
  {
@@ -218,28 +226,73 @@ alert("可変");
    } ) ;
  };
 
+
+ //場所を線で結ぶ処理（道に沿った線。時間も算出できる）
+ rendererOptions = {
+ draggable: true,
+ preserveViewport: false,
+ suppressMarkers: true
+ };
+ var directionsDisplay =
+   new google.maps.DirectionsRenderer(rendererOptions);
+ var directionsService =
+   new google.maps.DirectionsService();
+
+
+
+ var wayPoints = [];
+ //経路（道に沿った）や時間を算出する
+ document.getElementById( 'create_routes_time' ).onclick = function( e )
+ {
+    directionsDisplay.setMap(handler.getMap());
+alert("始まるよ");
+  google.maps.event.addListener(directionsDisplay,
+    'directions_changed', function(){
+  });
+ //経由ポイント@始点と終点を除く
+ poli = [];
+ point = <%= @point %>;
+ alert(point.length);
+	for (var i = 0; i < point.length; i++) {
+ //alert(point[i][1]);
+ //alert(point[i][0]);
+ //alert(i);
+	poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
+};
+alert("可変");
+		alert(poli);
+  for (var i = 1; i < poli.length-1; i++) {
+      wayPoints.push({
+        location: poli[i],
+        stopover: true
+      });
+  }
+	alert("ここは？");
+  calcRoute();
+ }
+
+
+
+ function calcRoute() {
+  var request = {
+  origin: poli[0],
+  destination: poli[poli.length-1],
+  travelMode: google.maps.DirectionsTravelMode.DRIVING,
+  unitSystem: google.maps.DirectionsUnitSystem.METRIC,
+  waypoints: wayPoints,
+  optimizeWaypoints: true,
+  avoidHighways: false,
+  avoidTolls: false
+  };
+
+	alert("きてる？");
+  directionsDisplay.setPanel(document.getElementById('directions-result'));
+  directionsService.route(request,
+   function(response,status){
+   if (status == google.maps.DirectionsStatus.OK){
+	alert("第一地点と第二地点の距離は" + response.routes[0].legs[0].distance.value / 1000 + "キロメートルあります");
+   directionsDisplay.setDirections(response);}
+   });
+ }
+
 </script>
-
-
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleModal">
-	モーダル・ダイアログ 呼び出し
-</button>
-
-<!-- モーダル・ダイアログ -->
-<div class="modal fade" id="sampleModal" tabindex="-1">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-				<h4 class="modal-title">タイトル</h4>
-			</div>
-			<div class="modal-body">
-				本文
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-				<button type="button" class="btn btn-primary">ボタン</button>
-			</div>
-		</div>
-	</div>
-</div>

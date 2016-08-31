@@ -75,6 +75,8 @@ $(function(){
   });
 });
 
+
+
 window.onload = function(){
 
 //マップを表示
