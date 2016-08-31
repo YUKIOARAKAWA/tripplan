@@ -44,6 +44,7 @@
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                 <li><%= link_to "ようこそ #{current_user.name} さん", mypage_top_path %></li>
+                <li><%= link_to "新規プラン作成", new_plan_path, class: 'btn btn-warning', style: "color:black"%></li>
               <% else %>
                 <li><%= link_to "サインイン", new_user_registration_path %></li>
                 <li><%= link_to "ログイン", new_user_session_path %></li>
