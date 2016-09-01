@@ -12,7 +12,7 @@ class PlansController < ApplicationController
   def show
     @place = Place.new
     @place.pins.build
-    @places = @plan.places
+    @places = @plan.places.order(:route)
     @members = @plan.users
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
