@@ -56,22 +56,24 @@ $(function(){
 
 
 // 場所のFROMの設定(datetimepicker)
-var data = {'data-date-format': 'YYYY-MM-DD HH:mm:ss' };
+var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
 $(function(){
   $('.startdatetimepicker').attr(data);
   $('.startdatetimepicker').datetimepicker({
+    sideBySide: true,
     locale: 'ja',
-    format: 'YYYY-MM-DD HH:mm:ss'
+    format: 'YYYY-MM-DD H:mm'
   });
 });
 
 // 場所のTOの設定(datetimepicker)
-var data = {'data-date-format': 'YYYY-MM-DD HH:mm:ss' };
+var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
 $(function(){
   $('.enddatetimepicker').attr(data);
   $('.enddatetimepicker').datetimepicker({
+    sideBySide: true,
     locale: 'ja',
-    format: 'YYYY-MM-DD HH:mm:ss'
+    format: 'YYYY-MM-DD H:mm'
   });
 });
 
