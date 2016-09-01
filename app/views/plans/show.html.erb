@@ -17,12 +17,12 @@
 
           <p>
             <strong>開始日:</strong>
-            <%= @plan.start_date %>
+            <b id = "min"><%= @plan.start_date %></b>
           </p>
 
           <p>
             <strong>終了日:</strong>
-            <%= @plan.end_date %>
+            <b id = "max"><%= @plan.end_date %></b>
           </p>
 
 					<%= link_to 'プランを編集する', edit_plan_path(@plan) %>

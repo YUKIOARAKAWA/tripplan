@@ -55,27 +55,68 @@ $(function(){
 });
 
 
-// 場所のFROMの設定(datetimepicker)
-var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
-$(function(){
-  $('.startdatetimepicker').attr(data);
-  $('.startdatetimepicker').datetimepicker({
-    sideBySide: true,
-    locale: 'ja',
-    format: 'YYYY-MM-DD H:mm'
+alert("発火のタイミング");
+
+
+
+
+
+//画像など全ての読み込みが完了した時点で発火される処理
+$(window).load(function(){
+  var min = $("#min").html();
+  alert(min);
+  var max = $("#max").html();
+  alert(max);
+
+  // 場所のFROMの設定(datetimepicker)
+  var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
+  $(function(){
+    $('.startdatetimepicker').attr(data);
+    $('.startdatetimepicker').datetimepicker({
+      minDate: min,
+      maxDate: max,
+      stepping: 5,
+      sideBySide: true,
+      locale: 'ja',
+      format: 'YYYY-MM-DD H:mm'
+    });
   });
+
+  // 場所のTOの設定(datetimepicker)
+  var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
+  $(function(){
+    $('.enddatetimepicker').attr(data);
+    $('.enddatetimepicker').datetimepicker({
+      minDate: min,
+      maxDate: max,
+      stepping: 5,
+      sideBySide: true,
+      locale: 'ja',
+      format: 'YYYY-MM-DD H:mm'
+    });
+  });
+
+  // FROM > TO　は入力できないように表示制御(datetimepicker)
+  //複数フォームあるが、一つ目のフォームにしか適用されていない。バグ(0901現在)
+  $(function(){
+    $('.startdatetimepicker').on("dp.change", function (e) {
+       $('.enddatetimepicker').data("DateTimePicker").minDate(e.date);
+     });
+    //  $('.startdatetimepicker').on("dp.hide", function (e) {
+    //     $('.enddatetimepicker').data("DateTimePicker").toggle();
+    //   });
+     $('.enddatetimepicker').on("dp.change", function (e) {
+       $('.startdatetimepicker').data("DateTimePicker").maxDate(e.date);
+     });
+  });
+
+
+
+
 });
 
-// 場所のTOの設定(datetimepicker)
-var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
-$(function(){
-  $('.enddatetimepicker').attr(data);
-  $('.enddatetimepicker').datetimepicker({
-    sideBySide: true,
-    locale: 'ja',
-    format: 'YYYY-MM-DD H:mm'
-  });
-});
+
+
 
 
 
