@@ -75,6 +75,7 @@ $(window).load(function(){
     $('.startdatetimepicker').datetimepicker({
       minDate: min,
       maxDate: max,
+      useCurrent: false,
       stepping: 5,
       sideBySide: true,
       locale: 'ja',
@@ -89,6 +90,7 @@ $(window).load(function(){
     $('.enddatetimepicker').datetimepicker({
       minDate: min,
       maxDate: max,
+      useCurrent: false,
       stepping: 5,
       sideBySide: true,
       locale: 'ja',
@@ -98,17 +100,18 @@ $(window).load(function(){
 
   // FROM > TO　は入力できないように表示制御(datetimepicker)
   //複数フォームあるが、一つ目のフォームにしか適用されていない。バグ(0901現在)
-  $(function(){
-    $('.startdatetimepicker').on("dp.change", function (e) {
-       $('.enddatetimepicker').data("DateTimePicker").minDate(e.date);
-     });
-    //  $('.startdatetimepicker').on("dp.hide", function (e) {
-    //     $('.enddatetimepicker').data("DateTimePicker").toggle();
-    //   });
-     $('.enddatetimepicker').on("dp.change", function (e) {
-       $('.startdatetimepicker').data("DateTimePicker").maxDate(e.date);
-     });
-  });
+  //正直この処理は必要か微妙なところ
+  // $(function(){
+  //   $('.startdatetimepicker').on("dp.change", function (e) {
+  //      $('.enddatetimepicker').data("DateTimePicker").minDate(e.date);
+  //    });
+  //   //  $('.startdatetimepicker').on("dp.hide", function (e) {
+  //   //     $('.enddatetimepicker').data("DateTimePicker").toggle();
+  //   //   });
+  //    $('.enddatetimepicker').on("dp.change", function (e) {
+  //      $('.startdatetimepicker').data("DateTimePicker").maxDate(e.date);
+  //    });
+  // });
 
 
 
