@@ -115,7 +115,8 @@ $(window).load(function(){
   // });
 
 
-
+  $('#sortable').sortable();
+  $('#sortable').disableSelection();
 
 });
 
