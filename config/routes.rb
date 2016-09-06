@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   get 'mypage/xxx'
 
-  resources :places
+  resources :places do
+    collection do
+      post 'reorder'
+    end
+  end
   resources :plans do
     collection do
       post 'add'
