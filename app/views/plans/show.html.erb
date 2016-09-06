@@ -184,23 +184,22 @@
 
 
 // 場所を線で結ぶメソッド（直線）
-polylines = [];
- document.getElementById( 'create_routes' ).onclick = function( e )
- {
+	polylines = [];
+ 	document.getElementById( 'create_routes' ).onclick = function( e ){
    /* 関係ない動作を無効化 */
    var e = e || window.event ;
    e.preventDefault() ;
    e.stopPropagation() ;
 
- poli = [];
- point = <%= @point %>;
- alert(point.length);
+ 	poli = [];
+ 	point = <%= @point %>;
+ 	alert(point.length);
   for (var i = 0; i < point.length; i++) {
-	//alert(point[i][1]);
-	//alert(point[i][0]);
-	//alert(i);
-  poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
-};
+		//alert(point[i][1]);
+		//alert(point[i][0]);
+		//alert(i);
+  	poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
+	};
 
  // var flightPlanCoordinates = [
  // 	new google.maps.LatLng( 35.5, 134.25 ) ,
@@ -209,7 +208,7 @@ polylines = [];
 
 // alert("固定");
 // alert(flightPlanCoordinates);
-alert("可変");
+		alert("可変");
 		alert(poli);
      //1つ目の線(Polyline)のインスタンスを作成する
      //new google.maps.Polyline() ]の引数にオプションオブジェクトを指定する
@@ -239,10 +238,9 @@ alert("可変");
 
  var wayPoints = [];
  //経路（道に沿った）や時間を算出する
- document.getElementById( 'create_routes_time' ).onclick = function( e )
- {
-    directionsDisplay.setMap(handler.getMap());
-alert("始まるよ");
+ document.getElementById( 'create_routes_time' ).onclick = function( e ){
+  directionsDisplay.setMap(handler.getMap());
+	alert("始まるよ");
   google.maps.event.addListener(directionsDisplay,
     'directions_changed', function(){
   });
@@ -277,7 +275,7 @@ alert("可変");
   travelMode: google.maps.DirectionsTravelMode.DRIVING,
   unitSystem: google.maps.DirectionsUnitSystem.METRIC,
   waypoints: wayPoints,
-  optimizeWaypoints: true,
+  optimizeWaypoints: false,
   avoidHighways: false,
   avoidTolls: false
   };
@@ -287,6 +285,8 @@ alert("可変");
   directionsService.route(request,
    function(response,status){
    if (status == google.maps.DirectionsStatus.OK){
+		 alert("最短」毛jロイ");
+		 alert(response.routes[0].waypoint_order);
 		 for (var i = 0; i < response.routes[0].legs.length; i++) {
 			$("#" + i).text("⬇︎" + response.routes[0].legs[i].duration.value / 60 + "分");
 		 	};
