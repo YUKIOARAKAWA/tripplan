@@ -78,6 +78,7 @@ class PlansController < ApplicationController
   end
 
   def datetime
+    binding.pry
     @place = Place.find(datatime_params[:id])
     respond_to do |format|
       if @place.update(datatime_params)
@@ -90,6 +91,7 @@ class PlansController < ApplicationController
       end
     end
   end
+
 
   # GET /plans/new
   def new

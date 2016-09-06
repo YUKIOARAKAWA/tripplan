@@ -61,6 +61,11 @@ class PlacesController < ApplicationController
     end
   end
 
+  def reorder
+    params[:row].each_with_index {|row, i| Place.update(row, {:route => i + 1})}
+    render :text => "OK"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_place

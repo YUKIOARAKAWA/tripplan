@@ -56,7 +56,7 @@ $(function(){
 });
 
 
-alert("発火のタイミング");
+//alert("発火のタイミング");
 
 
 
@@ -65,9 +65,9 @@ alert("発火のタイミング");
 //画像など全ての読み込みが完了した時点で発火される処理
 $(window).load(function(){
   var min = $("#min").html();
-  alert(min);
+//  alert(min);
   var max = $("#max").html();
-  alert(max);
+//  alert(max);
 
   // 場所のFROMの設定(datetimepicker)
   var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
@@ -115,8 +115,43 @@ $(window).load(function(){
   // });
 
 
-  $('#sortable').sortable();
+
+　// 追加された場所をドラッグすることで、順序を変更できるようにする(jquery-ui sortable)
+  $('#sortable').sortable({
+    start: function(event, ui) {
+      //alert(ui.item);
+      ui.item.css("background-color", "orange");
+    },
+    stop: function(event, ui) {
+    $('#sortable').css("background-color", "white");
+    ui.item.css("background-color", "#FFFFDD");
+    id = $("#plan_id").val();
+    var post ={
+      //row: $(this).sortable( 'serialize'), viewをrow_1,row_2のようにする必要がある
+      row: $(this).sortable( 'toArray'),
+      id: id
+    };
+    jQuery.post('/places/reorder', post, null, 'text');
+    },
+    //helper: "clone",
+    cursor: 'move',
+    //forcePlaceholderSize: true,
+    opacity: 0.8
+    //revert: true
+  });
+
   $('#sortable').disableSelection();
+
+
+  $('#sortable').bind('sortstop', function (e, ui) {
+    // ソートが完了したら実行される。
+    var rows = $('#sortable .route');
+    //alert(rows.length);
+    console.log(rows);
+    for (var i = 0, rowTotal = rows.length; i < rowTotal; i += 1) {
+        $($('.route')[i]).text(i + 1);
+    }
+})
 
 });
 
