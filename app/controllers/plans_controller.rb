@@ -16,7 +16,6 @@ class PlansController < ApplicationController
     @members = @plan.users
     i = 1
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
-      puts i
       marker.lat place.latitude
       marker.lng place.longitude
       marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>

@@ -69,7 +69,35 @@ class PlacesController < ApplicationController
 
   def reorder
     params[:row].each_with_index {|row, i| Place.update(row, {:route => i + 1})}
-    render :text => "OK"
+    @place = Place.find(params[:row][0])
+    @plan = @place.plan
+    @places = @plan.places.order(:route)
+    i = 1
+    @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      marker.lat place.latitude
+      marker.lng place.longitude
+      marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
+                        行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
+      marker.picture({
+                :url    => "/#{i}.png",
+                #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
+                :width  => "28.00000000001",
+                :height => "21.00000000001"
+               })
+      marker.json({title: place.address})
+      i = i + 1
+    end
+
+    @point = []
+    @hash.each do |hash|
+      temp= []
+      temp.push(hash[:lat])
+      temp.push(hash[:lng])
+      @point.push(temp)
+    end
+    render 'redraw'
+  #  render :text => "OK"
+
   end
 
   private
