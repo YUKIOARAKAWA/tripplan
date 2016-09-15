@@ -57,6 +57,57 @@
       </div>
     </div>
 		<div class="col-md-7">
+			<h3>新しく場所を追加する</h3>
+			<%= form_for @place, url: add_plans_path, method: "post" do |f| %>
+			  <% if @place.errors.any? %>
+			    <div id="error_explanation">
+			      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+			      <ul>
+			      <% @place.errors.full_messages.each do |message| %>
+			        <li><%= message %></li>
+			      <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+
+			  <div class="field">
+			    <%= f.hidden_field :user_id, value: current_user.id  %>
+			  </div>
+			  <div class="field">
+			    <%= f.hidden_field :plan_id, value: @plan.id %>
+			  </div>
+			  <div class="field">
+			    <%= f.label :address %><br>
+			    <%= f.text_field :address %>
+			  </div>
+			  <div class="field">
+			    <%= f.hidden_field :latitude %>
+			  </div>
+			  <div class="field">
+			    <%= f.hidden_field :longitude %>
+			  </div>
+			  <div class="field">
+			    <%= f.hidden_field :route %>
+			  </div>
+
+			    <%= f.fields_for :pins do |c| %>
+			    <div class="field">
+			      <%= c.label :comment %>(任意)<br>
+			      <%= c.text_field :comment %>
+			    </div>
+			    <div class="field">
+			      <%= c.label :want %><br>
+			      <%= c.radio_button :want, 0 %>低
+			      <%= c.radio_button :want, 1, :checked => "checked" %>中
+			      <%= c.radio_button :want, 2 %>高
+			    </div>
+			    <% end %>
+			  <div class="actions">
+			    <%= f.submit value: "追加", class: 'btn btn-primary'%>
+			  </div>
+			<% end %>
+
       <table class = "table">
       <thead>
         <tr>
@@ -111,58 +162,6 @@
 
 
 
-<h3>新しく場所を追加する</h3>
-<%= form_for @place, url: add_plans_path, method: "post" do |f| %>
-  <% if @place.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
-
-      <ul>
-      <% @place.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.hidden_field :user_id, value: current_user.id  %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :plan_id, value: @plan.id %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :latitude %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :longitude %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :route %>
-  </div>
-
-    <%= f.fields_for :pins do |c| %>
-    <div class="field">
-      <%= c.label :comment %>(任意)<br>
-      <%= c.text_field :comment %>
-    </div>
-    <div class="field">
-      <%= c.label :want %><br>
-      <%= c.radio_button :want, 0 %>低
-      <%= c.radio_button :want, 1, :checked => "checked" %>中
-      <%= c.radio_button :want, 2 %>高
-    </div>
-    <% end %>
-  <div class="actions">
-    <%= f.submit value: "追加", class: 'btn btn-primary'%>
-  </div>
-<% end %>
-
-
 ここにdistanceの結果を描画する
 <div id="directions-result" style="width:600px; height:1000px"></div>
 ここにdistanceの結果を描画する
@@ -172,11 +171,11 @@
 
 
 <script type="text/javascript">
-	alert("ハンドラーの前");
+	//alert("ハンドラーの前");
   handler = Gmaps.build('Google');
   defo = new google.maps.LatLng( 39.0686606 , 141.3507552 );
   handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-					alert("実行後");
+		//			alert("実行後");
     markers = handler.addMarkers(<%=raw @hash.to_json %>);
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
@@ -295,6 +294,7 @@ alert("可変");
 		alert("第一地点と第二地点の時間は" + response.routes[0].legs[0].duration.value / 60 + "分かかります");
 		alert(response.routes[0].legs[1]);
    directionsDisplay.setDirections(response);}
+	 alert(status);
    });
  }
 
