@@ -14,18 +14,21 @@ class PlansController < ApplicationController
     @place.pins.build
     @places = @plan.places.order(:route)
     @members = @plan.users
+    i = 1
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
+      puts i
       marker.lat place.latitude
       marker.lng place.longitude
       marker.infowindow "場所：#{place.address}<br>希望者：#{place.user.name}<br>
                         行きたい度：#{place.show_star}<br>コメント：#{place.pins[0].comment}"
-      #marker.picture({
-      #          :url    => "/brandImage.png",
+      marker.picture({
+                :url    => "/#{i}.png",
                 #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
-      #          :width  => "200",
-      #          :height => "200"
-      #         })
+                :width  => "50",
+                :height => "40"
+               })
       marker.json({title: place.address})
+      i = i + 1
     end
 
     @point = []
