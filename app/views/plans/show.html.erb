@@ -240,7 +240,7 @@
  //経路（道に沿った）や時間を算出する
  document.getElementById( 'create_routes_time' ).onclick = function( e ){
   directionsDisplay.setMap(handler.getMap());
-	alert("始まるよ");
+//	alert("始まるよ");
   google.maps.event.addListener(directionsDisplay,
     'directions_changed', function(){
   });
@@ -255,7 +255,7 @@
 	poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
 };
 //alert("可変");
-		alert(poli);
+//		alert(poli);
   for (var i = 1; i < poli.length-1; i++) {
       wayPoints.push({
         location: poli[i],
