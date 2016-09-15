@@ -130,7 +130,13 @@ $(window).load(function(){
       row: $(this).sortable( 'toArray'),
       id: id
     };
-    jQuery.post('/places/reorder', post, null, 'text');
+    jQuery.post(
+      '/places/reorder',
+      post,
+      function(data){
+        alert(data);
+        },
+      'text');
     },
     //helper: "clone",
     cursor: 'move',
