@@ -24,8 +24,8 @@ class PlansController < ApplicationController
       marker.picture({
                 :url    => "/#{i}.png",
                 #:url    => "https://graph.facebook.com/#{place.user.uid}/picture?width=32&height=32",
-                :width  => "50",
-                :height => "40"
+                :width  => "28.00000000001",
+                :height => "21.00000000001"
                })
       marker.json({title: place.address})
       i = i + 1
