@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require underscore
 //= require gmaps/google
@@ -158,10 +157,7 @@ $(window).load(function(){
 
 
 
-
-
 window.onload = function(){
-
 //マップを表示
 
 //latlngは（緯度,経度）
