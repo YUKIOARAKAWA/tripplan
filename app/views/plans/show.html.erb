@@ -247,14 +247,14 @@
  //経由ポイント@始点と終点を除く
  poli = [];
  point = <%= @point %>;
- alert(point.length);
+ //alert(point.length);
 	for (var i = 0; i < point.length; i++) {
  //alert(point[i][1]);
  //alert(point[i][0]);
  //alert(i);
 	poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
 };
-alert("可変");
+//alert("可変");
 		alert(poli);
   for (var i = 1; i < poli.length-1; i++) {
       wayPoints.push({
@@ -262,7 +262,7 @@ alert("可変");
         stopover: true
       });
   }
-	alert("ここは？");
+//	alert("ここは？");
   calcRoute();
  }
 
@@ -280,19 +280,19 @@ alert("可変");
   avoidTolls: false
   };
 
-	alert("きてる？");
+	//alert("きてる？");
   directionsDisplay.setPanel(document.getElementById('directions-result'));
   directionsService.route(request,
    function(response,status){
    if (status == google.maps.DirectionsStatus.OK){
-		 alert("最短」毛jロイ");
-		 alert(response.routes[0].waypoint_order);
+	//	 alert("最短」毛jロイ");
+	//	 alert(response.routes[0].waypoint_order);
 		 for (var i = 0; i < response.routes[0].legs.length; i++) {
-			$("#" + i).text("⬇︎" + response.routes[0].legs[i].duration.value / 60 + "分");
+			$("#" + i).text("⬇︎" + Math.floor( response.routes[0].legs[i].duration.value / 60) + "分" + "(" + Math.floor(response.routes[0].legs[i].distance.value / 1000 )+ "Km)" );
 		 	};
-		alert("第一地点と第二地点の距離は" + response.routes[0].legs[0].distance.value / 1000 + "キロメートルあります");
-		alert("第一地点と第二地点の時間は" + response.routes[0].legs[0].duration.value / 60 + "分かかります");
-		alert(response.routes[0].legs[1]);
+	//	alert("第一地点と第二地点の距離は" + response.routes[0].legs[0].distance.value / 1000 + "キロメートルあります");
+	//	alert("第一地点と第二地点の時間は" + response.routes[0].legs[0].duration.value / 60 + "分かかります");
+	//	alert(response.routes[0].legs[1]);
    directionsDisplay.setDirections(response);}
 	 alert(status);
    });
