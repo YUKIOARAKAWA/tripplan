@@ -80,12 +80,12 @@ class PlansController < ApplicationController
   end
 
   def datetime
-    #binding.pry
     @place = Place.find(datatime_params[:id])
     respond_to do |format|
       if @place.update(datatime_params)
         format.html { redirect_to plan_path(@place.plan_id), notice: '時間を更新しました' }
         format.json { render :show, status: :ok, location: @plan }
+        format.js
       else
         #未完成
         format.html { render :edit }

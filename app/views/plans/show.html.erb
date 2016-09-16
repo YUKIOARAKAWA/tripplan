@@ -131,7 +131,7 @@
           <!--緯度・経度は表示しない<td><%= place.longitude %></td>-->
 					<td><%= link_to '削除', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-				<%= form_for place, url: datetime_plans_path, method: "post" do |f| %>
+				<%= form_for place, url: datetime_plans_path, method: "post", remote: true do |f| %>
 					<td><div class='input-group date startdatetimepicker'>
 						<%= f.text_field :from, class: 'form-control' %>
 						<span class="input-group-addon">
