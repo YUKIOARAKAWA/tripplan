@@ -94,6 +94,11 @@ class PlansController < ApplicationController
     end
   end
 
+  def confirm
+    #binding.pry
+    @plan = Plan.find(params[:id])
+  end
+
 
   # GET /plans/new
   def new
