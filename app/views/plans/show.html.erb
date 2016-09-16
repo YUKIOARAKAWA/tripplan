@@ -287,6 +287,7 @@
    if (status == google.maps.DirectionsStatus.OK){
 	//	 alert("最短」毛jロイ");
 	//	 alert(response.routes[0].waypoint_order);
+	$('.hidden_number').text("");
 		 for (var i = 0; i < response.routes[0].legs.length; i++) {
 			$("#" + i).text("⬇︎" + Math.floor( response.routes[0].legs[i].duration.value / 60) + "分" + "(" + Math.floor(response.routes[0].legs[i].distance.value / 1000 )+ "Km)" );
 		 	};
