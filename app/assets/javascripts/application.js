@@ -152,6 +152,7 @@ $(window).load(function(){
     // ソートが完了したら実行される。
     var rows = $('#sortable .route');
     //alert(rows.length);
+    $('.hidden_number').text("");
     console.log(rows);
     for (var i = 0, rowTotal = rows.length; i < rowTotal; i += 1) {
         $($('.route')[i]).text(i + 1);
@@ -194,6 +195,35 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
 
 
  var wayPoints = [];
+
+//⬇︎関数として定義し直す
+//クリックでバインドしていたのを常に実行するようにした
+//中身は全く一緒
+
+ directionsDisplay.setMap(handler.getMap());
+//	alert("始まるよ");
+ google.maps.event.addListener(directionsDisplay,
+   'directions_changed', function(){
+ });
+//経由ポイント@始点と終点を除く
+poli = [];
+point = data.point;
+//alert(point.length);
+ for (var i = 0; i < point.length; i++) {
+//alert(point[i][1]);
+//alert(point[i][0]);
+//alert(i);
+ poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
+};
+ for (var i = 1; i < poli.length-1; i++) {
+     wayPoints.push({
+       location: poli[i],
+       stopover: true
+     });
+ }
+ calcRoutess();
+//⬆︎ここまでは関数化する
+
  //経路（道に沿った）や時間を算出する
  document.getElementById( 'create_routes_time' ).onclick = function( e ){
   directionsDisplay.setMap(handler.getMap());
