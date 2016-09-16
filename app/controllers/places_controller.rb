@@ -95,8 +95,10 @@ class PlacesController < ApplicationController
       temp.push(hash[:lng])
       @point.push(temp)
     end
-    render 'redraw'
+  #  render 'redraw'
   #  render :text => "OK"
+  @aaa = {hash: @hash, point: @point}
+    render :json => @aaa
 
   end
 
