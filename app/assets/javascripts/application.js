@@ -269,6 +269,7 @@ point = data.point;
   directionsService.route(request,
    function(response,status){
    if (status == google.maps.DirectionsStatus.OK){
+     $('.hidden_number').text("");
 		 for (var i = 0; i < response.routes[0].legs.length; i++) {
 			$("#" + i).text("⬇︎" + Math.floor( response.routes[0].legs[i].duration.value / 60) + "分" + "(" + Math.floor(response.routes[0].legs[i].distance.value / 1000 )+ "Km)" );
 		 	};
