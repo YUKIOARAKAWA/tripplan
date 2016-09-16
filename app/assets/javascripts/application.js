@@ -134,9 +134,9 @@ $(window).load(function(){
       '/places/reorder',
       post,
       function(data){
-        alert(data);
+        callbacks(data);
         },
-      'text');
+      'json');
     },
     //helper: "clone",
     cursor: 'move',
@@ -161,6 +161,26 @@ $(window).load(function(){
 });
 
 
+function callbacks(data){
+//  alert(data);
+//ここから
+//alert(data["hash"]);
+//alert(data.point);
+
+handler = Gmaps.build('Google');
+defo = new google.maps.LatLng( 39.0686606 , 141.3507552 );
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+
+  markers = handler.addMarkers(data.hash);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  handler.getMap().setZoom(7);
+  handler.map.centerOn(data.point[0]);
+});
+
+
+//ここまで
+}
 
 
 window.onload = function(){
