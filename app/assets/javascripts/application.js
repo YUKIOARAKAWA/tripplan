@@ -155,6 +155,7 @@ $(window).load(function(){
     console.log(rows);
     for (var i = 0, rowTotal = rows.length; i < rowTotal; i += 1) {
         $($('.route')[i]).text(i + 1);
+        $($('.hidden_number')[i]).attr('id', i);
     }
 })
 
@@ -178,6 +179,73 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   handler.map.centerOn(data.point[0]);
 });
 
+
+ //場所を線で結ぶ処理（道に沿った線。時間も算出できる）
+ rendererOptions = {
+ draggable: true,
+ preserveViewport: false,
+ suppressMarkers: true
+ };
+ var directionsDisplay =
+   new google.maps.DirectionsRenderer(rendererOptions);
+ var directionsService =
+   new google.maps.DirectionsService();
+
+
+
+ var wayPoints = [];
+ //経路（道に沿った）や時間を算出する
+ document.getElementById( 'create_routes_time' ).onclick = function( e ){
+  directionsDisplay.setMap(handler.getMap());
+//	alert("始まるよ");
+  google.maps.event.addListener(directionsDisplay,
+    'directions_changed', function(){
+  });
+ //経由ポイント@始点と終点を除く
+ poli = [];
+ point = data.point;
+ //alert(point.length);
+	for (var i = 0; i < point.length; i++) {
+ //alert(point[i][1]);
+ //alert(point[i][0]);
+ //alert(i);
+	poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
+};
+		alert(poli);
+  for (var i = 1; i < poli.length-1; i++) {
+      wayPoints.push({
+        location: poli[i],
+        stopover: true
+      });
+  }
+  calcRoutess();
+ }
+
+
+
+ function calcRoutess() {
+  var request = {
+  origin: poli[0],
+  destination: poli[poli.length-1],
+  travelMode: google.maps.DirectionsTravelMode.DRIVING,
+  unitSystem: google.maps.DirectionsUnitSystem.METRIC,
+  waypoints: wayPoints,
+  optimizeWaypoints: false,
+  avoidHighways: false,
+  avoidTolls: false
+  };
+
+  directionsDisplay.setPanel(document.getElementById('directions-result'));
+  directionsService.route(request,
+   function(response,status){
+   if (status == google.maps.DirectionsStatus.OK){
+		 for (var i = 0; i < response.routes[0].legs.length; i++) {
+			$("#" + i).text("⬇︎" + Math.floor( response.routes[0].legs[i].duration.value / 60) + "分" + "(" + Math.floor(response.routes[0].legs[i].distance.value / 1000 )+ "Km)" );
+		 	};
+   directionsDisplay.setDirections(response);}
+//	 alert(status);
+   });
+ }
 
 //ここまで
 }
