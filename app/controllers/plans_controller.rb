@@ -97,6 +97,7 @@ class PlansController < ApplicationController
   def confirm
     #binding.pry
     @plan = Plan.find(params[:id])
+    @places = @plan.places.order(:route)
   end
 
 
