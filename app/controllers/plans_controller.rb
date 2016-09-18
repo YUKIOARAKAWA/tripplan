@@ -81,6 +81,7 @@ class PlansController < ApplicationController
 
   def datetime
     @place = Place.find(datatime_params[:id])
+    #  binding.pry
     respond_to do |format|
       if @place.update(datatime_params)
         format.html { redirect_to plan_path(@place.plan_id), notice: '時間を更新しました' }

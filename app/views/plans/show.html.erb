@@ -133,11 +133,11 @@
 
 				<%= form_for place, url: datetime_plans_path, method: "post", remote: true do |f| %>
 					<td><div class='input-group date startdatetimepicker'>
-						<%= f.text_field :from, class: 'form-control' %>
+						<%= f.text_field :from, class: 'form-control testid' %>
 						<span class="input-group-addon">
 					</div></td>
 					<td><div class='input-group date enddatetimepicker'>
-						<%= f.text_field :to, class: 'form-control' %>
+						<%= f.text_field :to, class: 'form-control testid' %>
 						<span class="input-group-addon">
 					</div></td>
 					<td><div>
@@ -298,5 +298,4 @@
 	 alert(status);
    });
  }
-
 </script>

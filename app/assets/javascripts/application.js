@@ -160,7 +160,38 @@ $(window).load(function(){
     }
 })
 
+
+
+// FROMとTOをajaxで更新する
+//　本当は値のchangeイベントでやるべきだが、datapickだとうまくいかないため、暫定的な対応
+$(".testid").focusout(function(e) {
+  id = $(this).parent().parent().parent().attr('id');
+  //  alert(id);
+  post = {
+    place:{
+      from: e.target.value,
+      to: e.target.value,
+      id :id
+    }
+  }
+
+  jQuery.post(
+    '/plans/datetime',
+    post,
+    function(data){
+    //  alert(data);
+      },
+    'text');
+
 });
+
+
+
+
+
+});
+
+
 
 
 function callbacks(data){
