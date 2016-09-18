@@ -166,15 +166,25 @@ $(window).load(function(){
 //　本当は値のchangeイベントでやるべきだが、datapickだとうまくいかないため、暫定的な対応
 $(".testid").focusout(function(e) {
   id = $(this).parent().parent().parent().attr('id');
-  //  alert(id);
-  post = {
-    place:{
-      from: e.target.value,
-      to: e.target.value,
-      id :id
-    }
-  }
-
+  var tagname = $(this).attr('name')
+  if (tagname == "place[from]"){
+      //alert(tagname);
+      var post = {
+          place:{
+            from: e.target.value,
+          //  to: e.target.value,
+            id :id
+          }
+        }
+  } else {
+      var post = {
+          place:{
+            //  from: e.target.value,
+            to: e.target.value,
+            id :id
+          }
+        }
+      }
   jQuery.post(
     '/plans/datetime',
     post,
@@ -182,9 +192,11 @@ $(".testid").focusout(function(e) {
     //  alert(data);
       },
     'text');
-
 });
 
+// $("tr").mouseover(function(){
+//   alert($(this));
+// })
 
 
 
