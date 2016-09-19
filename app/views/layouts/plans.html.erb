@@ -43,10 +43,28 @@
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
                 <li><%= link_to "ようこそ #{current_user.name} さん", mypage_top_path %></li>
-                <li><%= link_to "新規プラン作成", new_plan_path, class: 'btn btn-warning', style: "color:black"%></li>
+
+                <% unless @plan.id.nil? %>
+                <li role="presentation" class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+    <%= @plan.name %> <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li role="presentation"><a href="#"><b>エリア：<%= @plan.area.name %></b></a></li>
+    <li role="presentation"><a href="#">開始日：<b id = "min"><%= @plan.start_date %></b></a></li>
+    <li role="presentation"><a href="#">終了日：<b id = "max"><%= @plan.end_date %></b></a></li>
+    <li role="presentation"><%= link_to 'プランを編集する', edit_plan_path(@plan) %></li>
+
+  </ul>
+</li>
+
+      					<input type="hidden" id ="plan_id" name="plan_id" value="<%= @plan.id %>">
+                <%end%>
+
               <% else %>
                 <li><%= link_to "サインイン", new_user_registration_path %></li>
                 <li><%= link_to "ログイン", new_user_session_path %></li>
+
               <% end %>
       			</ul>
       		</div>

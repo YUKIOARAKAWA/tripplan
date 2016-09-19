@@ -198,6 +198,8 @@ $(".testid").focusout(function(e) {
 //   alert($(this));
 // })
 
+//window.open('example.html', 'mywindow2', 'width=400, height=300, menubar=no, toolbar=no, scrollbars=yes');
+//window.prompt("ユーザー名を入力してください", "Uese Name")
 
 
 
@@ -240,7 +242,7 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
  var wayPoints = [];
 
 //⬇︎関数として定義し直す
-//クリックでバインドしていたのを常に実行するようにした
+//クリックにバインドしていたのを常に実行するようにした
 //中身は全く一緒
 
  directionsDisplay.setMap(handler.getMap());
@@ -317,7 +319,7 @@ point = data.point;
 			$("#" + i).text("⬇︎" + Math.floor( response.routes[0].legs[i].duration.value / 60) + "分" + "(" + Math.floor(response.routes[0].legs[i].distance.value / 1000 )+ "Km)" );
 		 	};
    directionsDisplay.setDirections(response);}
-//	 alert(status);
+	 alert(status);
    });
  }
 

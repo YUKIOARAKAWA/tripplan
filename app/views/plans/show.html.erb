@@ -1,33 +1,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6">
-      <div class="panel panel-warning">
-      	<div class="panel-heading">
-      		プラン
-      	</div>
-      	<div class="panel-body">
-          <p>
-            <strong>エリア:</strong>
-            <%= @plan.area.name %>
-          </p>
-          <p>
-            <strong>プラン名:</strong>
-            <%= @plan.name %>
-          </p>
-					<input type="hidden" id ="plan_id" name="plan_id" value="<%= @plan.id %>">
-          <p>
-            <strong>開始日:</strong>
-            <b id = "min"><%= @plan.start_date %></b>
-          </p>
 
-          <p>
-            <strong>終了日:</strong>
-            <b id = "max"><%= @plan.end_date %></b>
-          </p>
 
-					<%= link_to 'プランを編集する', edit_plan_path(@plan) %>
-      	</div>
-      </div>
     </div>
 		<div class="col-md-6">
       <div class="panel panel-info">
