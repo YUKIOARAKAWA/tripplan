@@ -47,66 +47,68 @@
 </div>
 
 
+<h3>場所を追加しましょう！</h3>
+<%= form_for @place, url: add_plans_path, method: "post" do |f| %>
+	<% if @place.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+			<ul>
+			<% @place.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.hidden_field :user_id, value: current_user.id  %>
+	</div>
+	<div class="field">
+		<%= f.hidden_field :plan_id, value: @plan.id %>
+	</div>
+	<div class="field">
+		<%= f.label :address %>
+		<%= f.text_field :address %>
+	</div>
+	<div class="field">
+		<%= f.hidden_field :latitude %>
+	</div>
+	<div class="field">
+		<%= f.hidden_field :longitude %>
+	</div>
+	<div class="field">
+		<%= f.hidden_field :route %>
+	</div>
+
+		<%= f.fields_for :pins do |c| %>
+		<div class="field">
+			<%= c.label :comment %>(任意)
+			<%= c.text_field :comment %>
+		</div>
+		<div class="field">
+			<%= c.label :want %>
+			<%= c.radio_button :want, 0 %>低
+			<%= c.radio_button :want, 1, :checked => "checked" %>中
+			<%= c.radio_button :want, 2 %>高
+		</div>
+		<% end %>
+	<div class="actions">
+		<%= f.submit value: "追加", class: 'btn btn-primary'%>
+	</div>
+<% end %>
+
 
 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-5">
       <div style='width: 700px;'>
-        <div id="map" style='width: 550px; height:  450px;'></div>
+        <div id="map" style='width: 550px; height: 700px;'></div>
       </div>
     </div>
 		<div class="col-md-7">
-			<h3>新しく場所を追加する</h3>
-			<%= form_for @place, url: add_plans_path, method: "post" do |f| %>
-			  <% if @place.errors.any? %>
-			    <div id="error_explanation">
-			      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
 
-			      <ul>
-			      <% @place.errors.full_messages.each do |message| %>
-			        <li><%= message %></li>
-			      <% end %>
-			      </ul>
-			    </div>
-			  <% end %>
-
-			  <div class="field">
-			    <%= f.hidden_field :user_id, value: current_user.id  %>
-			  </div>
-			  <div class="field">
-			    <%= f.hidden_field :plan_id, value: @plan.id %>
-			  </div>
-			  <div class="field">
-			    <%= f.label :address %><br>
-			    <%= f.text_field :address %>
-			  </div>
-			  <div class="field">
-			    <%= f.hidden_field :latitude %>
-			  </div>
-			  <div class="field">
-			    <%= f.hidden_field :longitude %>
-			  </div>
-			  <div class="field">
-			    <%= f.hidden_field :route %>
-			  </div>
-
-			    <%= f.fields_for :pins do |c| %>
-			    <div class="field">
-			      <%= c.label :comment %>(任意)<br>
-			      <%= c.text_field :comment %>
-			    </div>
-			    <div class="field">
-			      <%= c.label :want %><br>
-			      <%= c.radio_button :want, 0 %>低
-			      <%= c.radio_button :want, 1, :checked => "checked" %>中
-			      <%= c.radio_button :want, 2 %>高
-			    </div>
-			    <% end %>
-			  <div class="actions">
-			    <%= f.submit value: "追加", class: 'btn btn-primary'%>
-			  </div>
-			<% end %>
 
       <table class = "table">
       <thead>
@@ -151,6 +153,7 @@
         <%i = i + 1%><% end %>
       </tbody>
       </table>
+			ドラッグ＆ドロップで経路を変更できます。<br>
 			<button type="button" id = "create_routes" class = 'btn btn-primary'>直線を引く</button>
 			<button type="button" id = "create_routes_time" class = 'btn btn-primary'>経路作成</button>
     </div>
@@ -161,7 +164,7 @@
 
 <%= link_to '決定', confirm_plan_path(@plan), class: 'btn btn-primary', style: 'color:white' %>
 
-
+<br>
 ここにdistanceの結果を描画する
 <div id="directions-result" style="width:600px; height:1000px"></div>
 ここにdistanceの結果を描画する
