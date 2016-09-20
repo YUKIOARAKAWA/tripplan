@@ -40,24 +40,31 @@
       		<div class="collapse navbar-collapse" id="navbarEexample2">
       			<ul class="nav navbar-nav">
               <% if user_signed_in? %>
-                <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
-                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                <li><%= link_to "ようこそ #{current_user.name} さん", top_mypage_path(current_user) %></li>
+                <li role="presentation" class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                  <%= hedder_profile_img(current_user) %> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><%= link_to 'プロフィール変更', edit_user_registration_path %></a></li>
+                  <li role="presentation"><%= link_to "マイページ", top_mypage_path(current_user) %></a></li>
+                  <li role="presentation"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a></li>
+                </ul>
+              </li>
                 <li><%= link_to "新規プラン作成", new_plan_path, class: 'btn btn-warning', style: "color:black"%></li>
               <% else %>
                 <li><%= link_to "サインイン", new_user_registration_path %></li>
                 <li><%= link_to "ログイン", new_user_session_path %></li>
               <% end %>
-
-              <li><%= form_for @plan, url: plans_path, method: "get" do |f| %>
-                <div class="field">
-                  <%= f.collection_select :area_id, Area.all, :id, :name %>
-                </div>
-                <div class="actions">
-                  <%= f.submit class: 'btn btn-primary', value: "プランを検索" %>
-                </div>
-              </li>
-              <% end %>
+<li>　　</li>
+            <li><%= form_for @plan, url: plans_path, method: "get" do |f| %>
+              <div class="field">
+                <%= f.collection_select :area_id, Area.all, :id, :name %>
+              </div>
+              <div class="actions">
+                <%= f.submit class: 'btn btn-primary', value: "プランを検索" %>
+              </div>
+            </li>
+            <% end %>
 
       			</ul>
       		</div>
