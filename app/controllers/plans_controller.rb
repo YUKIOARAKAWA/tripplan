@@ -4,7 +4,8 @@ class PlansController < ApplicationController
   # GET /plans
   # GET /plans.json
   def index
-    @plans = Plan.all
+    @plans = Plan.where(search_params)
+    @areaname = Area.find(search_params[:area_id]).name
   end
 
   # GET /plans/1
@@ -175,5 +176,10 @@ class PlansController < ApplicationController
     def datatime_params
       params.require(:place).permit(:from, :to, :id)
     end
+
+    def search_params
+      params.require(:plan).permit(:area_id)
+    end
+
 
 end
