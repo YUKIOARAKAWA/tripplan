@@ -1,7 +1,15 @@
+<h3><プロフィール></h3>
+  名前：<%= @user.name %>
+  <%= profile_img(@user) %>
+
+
+
 <h3><参加中のプラン></h3>
   <% @myplans.each do |myplan| %>
     ・<td><%=link_to myplan.name, plan_path(myplan)%></td><br>
   <% end %>
 
 <br>
+<% if @user == current_user %>
 <td><%=link_to "新規プラン作成", new_plan_path, class: 'btn btn-primary', style: "color:white"%></td><br>
+<% end %>
