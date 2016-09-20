@@ -103,10 +103,12 @@ class PlansController < ApplicationController
   end
 
   def pdf
-  #  binding.pry
+    #binding.pry
     respond_to do |format|
     format.html { redirect_to :action => 'pdf', :format => 'pdf', debug: 1 }
     format.pdf do
+      @plan = Plan.find(params[:id])
+      @places = @plan.places.order(:route)
       render pdf: 'pdf',
        layout: 'pdf_layout.html.erb',
        encoding: 'UTF-8',
