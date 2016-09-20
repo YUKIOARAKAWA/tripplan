@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     member do
       get 'member'
       get 'confirm'
+      get 'pdf'
     end
   end
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }

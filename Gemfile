@@ -67,3 +67,7 @@ gem 'omniauth-facebook'
 
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+
+# PDF出力
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
