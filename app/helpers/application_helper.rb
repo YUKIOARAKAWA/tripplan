@@ -23,4 +23,10 @@ module ApplicationHelper
     image_tag(img_url, alt: user.name, class: 'img-responsive js-replace-no-image img-responsive img-circle', width: '100',height: '100', margin: '1px')
   end
 
+  # ユーザのプロフィール写真を表示する(header用)
+  def hedder_profile_img(user)
+    img_url = "https://graph.facebook.com/#{user.uid}/picture?width=320&height=320"
+    image_tag(img_url, alt: user.name, class: 'img-responsive js-replace-no-image img-responsive img-circle', width: '35',height: '35', margin: '1px')
+  end
+
 end
