@@ -11,7 +11,7 @@
       	</div>
       	<div class="panel-body">
           <% @members.each do |member| %>
-            <td><%= member.name %></td><br>
+            <td><%=link_to member.name, top_mypage_path(member)%></td><br>
 						<%= profile_img(member) %>
           <% end %>
           <td><%=link_to "メンバーを変更する", member_plan_path(@plan)%></td><br>
