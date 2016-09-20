@@ -42,7 +42,7 @@
               <% if user_signed_in? %>
                 <li><%= link_to 'プロフィール変更', edit_user_registration_path %></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                <li><%= link_to "ようこそ #{current_user.name} さん", mypage_top_path %></li>
+                <li><%= link_to "ようこそ #{current_user.name} さん", top_mypage_path(current_user) %></li>
 
                 <% unless @plan.id.nil? %>
                 <li role="presentation" class="dropdown">

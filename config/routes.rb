@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  get 'mypage/top'
+  resources :mypage do
+    member do
+      get 'top'
+    end
+  end
 
-  get 'mypage/xxx'
+  #get 'mypage/xxx'
 
   resources :places do
     collection do
