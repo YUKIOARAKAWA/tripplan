@@ -102,6 +102,19 @@ class PlansController < ApplicationController
     @places = @plan.places.order(:route)
   end
 
+  def pdf
+  #  binding.pry
+    respond_to do |format|
+    format.html { redirect_to :action => 'pdf', :format => 'pdf', debug: 1 }
+    format.pdf do
+      render pdf: 'pdf',
+       layout: 'pdf_layout.html.erb',
+       encoding: 'UTF-8',
+       no_background: false
+     end
+   end
+  end
+
 
   # GET /plans/new
   def new
