@@ -1,6 +1,6 @@
 class MypageController < ApplicationController
   def top
-    @myplans = current_user.plans
+    @myplans = User.find(params[:id]).plans
   end
 
   def xxx
