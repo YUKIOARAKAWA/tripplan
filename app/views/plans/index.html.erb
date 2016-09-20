@@ -1,33 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Plans</h1>
+<h1>「<%= @areaname %>」の検索結果(<%= @plans.count %>件)</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Area</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @plans.each do |plan| %>
-      <tr>
-        <td><%= plan.name %></td>
-        <td><%= plan.start_date %></td>
-        <td><%= plan.end_date %></td>
-        <td><%= plan.area.name %></td>
-        <td><%= link_to 'Show', plan %></td>
-        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
-        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container-fluid">
+	<div class="row">
+		<% @plans.each do |plan| %>
+		<div class="col-md-3 col-xs-offset-1">
 
-<br>
-
-<%= link_to 'New Plan', new_plan_path %>
+			<div class="media">
+				<a class="media-left" href="#">
+					<%= image_tag("/tokyo.jpg", :size => "200x200", :alt => "アイコン", class: 'img-responsive') %>
+				</a>
+				<div class="media-rigth">
+					<h4 class="media-heading">
+						<%=link_to plan.name, plan_path(plan)%>
+					</h4>
+					メンバー (<%= plan.plan_users.count %>)
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
