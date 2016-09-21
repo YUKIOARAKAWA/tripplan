@@ -120,6 +120,21 @@ class PlansController < ApplicationController
    end
   end
 
+  def finish_mail
+    @plan = Plan.find(params[:id])
+    members = @plan.users
+
+    # deliverメソッドを使って、メールを送信する。メンバー全員に送信する
+    members.each do |member|
+      MemberMailer.plan_finish_email(@plan,member).deliver
+    end
+
+    respond_to do |format|
+      format.html { redirect_to confirm_plan_path(@plan), notice: '送信しました' }
+    end
+
+  end
+
 
   # GET /plans/new
   def new
