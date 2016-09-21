@@ -4,7 +4,6 @@ class MemberMailer < ApplicationMailer
   def join_plan_email(user_id,plan_id,current_user)
     @user = User.find(user_id)
     @plan = Plan.find(plan_id)
-  binding.pry
     mail to: @user.email, subject: "#{current_user.name}さんからプランに招待されました"
   end
 end
