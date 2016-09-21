@@ -72,7 +72,7 @@ class PlansController < ApplicationController
     respond_to do |format|
       if @plan_user.save
         # deliverメソッドを使って、メールを送信する
-        PostMailer.join_plan_email().deliver
+        MemberMailer.join_plan_email(plan_user_params[:user_id],plan_user_params[:plan_id],current_user).deliver
 
         format.html { redirect_to ({action: 'member', id: @plan_user.plan_id }) }
         format.json { render :show, status: :created, location: @plan_user }
