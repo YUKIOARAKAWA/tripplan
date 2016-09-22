@@ -5,9 +5,12 @@
 	</div>
 	<div class = "login"><br>
 		<a href = "/users/auth/facebook" class="btn btn-social btn-facebook" style="color:white"><span class="fa fa-facebook">f</span> フェイスブックで新規登録/ログイン</a>
-<p>または</p>
-<a href = "/users/auth/facebook" class="btn btn-social btn-github" style="color:white"><span class="glyphicon glyphicon-envelope"></span> メールアドレスで登録</a>
-	<br><br></div>
+		<p>または</p>
+		<a href = "/users/sign_up" class="btn btn-social btn-github" style="color:white"><span class="glyphicon glyphicon-envelope"></span> メールアドレスで登録</a>
+		<br><br>
+		<%= link_to "登録済みの方はこちら", new_user_session_path, style: "color:white" %>
+		<br><br>
+	</div>
 </div>
 
 
