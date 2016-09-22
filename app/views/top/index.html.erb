@@ -1,14 +1,13 @@
-<%= image_tag("/top.jpg", :size => "1400x600", :alt => "アイコン", class: 'img-responsive') %>
-
-<p>tripplan-あなたの旅行をもっと楽しく！</p>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-4 col-xs-offset-4">
-      <a href = "/users/auth/facebook" class="btn btn-social btn-facebook" style="color:white">
-         <span class="fa fa-facebook">f</span> フェイスブックで新規登録/ログイン
-       </a>
-    </div>
+<div class="photo">
+	<%= image_tag("/top.jpg", :size => "1400x600", :alt => "アイコン", class: 'img-responsive') %>
+	<div class = "title">
+		tripplan　-　あなたの旅、もっと楽しく！
 	</div>
+	<div class = "login"><br>
+		<a href = "/users/auth/facebook" class="btn btn-social btn-facebook" style="color:white"><span class="fa fa-facebook">f</span> フェイスブックで新規登録/ログイン</a>
+<p>または</p>
+<a href = "/users/auth/facebook" class="btn btn-social btn-github" style="color:white"><span class="glyphicon glyphicon-envelope"></span> メールアドレスで登録</a>
+	<br><br></div>
 </div>
 
 
