@@ -86,6 +86,7 @@ class PlacesController < ApplicationController
                })
       marker.json({title: place.address})
       i = i + 1
+  #    binding.pry
     end
 
     @point = []
@@ -98,6 +99,7 @@ class PlacesController < ApplicationController
   #  render 'redraw'
   #  render :text => "OK"
   @aaa = {hash: @hash, point: @point}
+#    binding.pry
     render :json => @aaa
 
   end

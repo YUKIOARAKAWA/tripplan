@@ -134,6 +134,7 @@ $(window).load(function(){
       '/places/reorder',
       post,
       function(data){
+        alert(data);
         callbacks(data);
         },
       'json');
