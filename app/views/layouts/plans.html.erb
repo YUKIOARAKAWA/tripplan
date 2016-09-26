@@ -58,10 +58,11 @@
     <%= @plan.name %> <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li role="presentation"><a href="#"><b>エリア：<%= @plan.area.name %></b></a></li>
-    <li role="presentation"><a href="#">開始日：<b id = "min"><%= @plan.start_date %></b></a></li>
-    <li role="presentation"><a href="#">終了日：<b><%= @plan.end_date %></b></a></li><div id="max" class = "<%= @plan.end_date.tomorrow %>"></div>
-    <li role="presentation"><%= link_to 'プランを編集する', edit_plan_path(@plan) %></li>
+    <li role="presentation"><b>エリア：<%= @plan.area.name %></b></li>
+    <li role="presentation"><b>日程：</b></li>
+    <li role="presentation"><b id = "min"><%= @plan.start_date %></b>-<b><%= @plan.end_date %></li>
+    <div id="max" class = "<%= @plan.end_date.tomorrow %>"></div>
+    <br><li role="presentation"><%= button_to '基本情報を編集する', edit_plan_path(@plan), class: "btn btn-info" %></li>
 
   </ul>
 </li>
