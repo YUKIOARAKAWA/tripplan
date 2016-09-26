@@ -60,7 +60,7 @@
   <ul class="dropdown-menu" role="menu">
     <li role="presentation"><a href="#"><b>エリア：<%= @plan.area.name %></b></a></li>
     <li role="presentation"><a href="#">開始日：<b id = "min"><%= @plan.start_date %></b></a></li>
-    <li role="presentation"><a href="#">終了日：<b id = "max"><%= @plan.end_date %></b></a></li>
+    <li role="presentation"><a href="#">終了日：<b><%= @plan.end_date %></b></a></li><div id="max" class = "<%= @plan.end_date.tomorrow %>"></div>
     <li role="presentation"><%= link_to 'プランを編集する', edit_plan_path(@plan) %></li>
 
   </ul>

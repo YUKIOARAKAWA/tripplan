@@ -65,8 +65,10 @@ $(function(){
 $(window).load(function(){
   var min = $("#min").html();
 //  alert(min);
-  var max = $("#max").html();
-//  alert(max);
+  var max = $("#max").attr('class');
+//  var max1=new Date(max);
+//  max1.setDate(max1.getDate()+1);
+  alert(max);
 
   // 場所のFROMの設定(datetimepicker)
   var data = {'data-date-format': 'YYYY-MM-DD H:mm' };
