@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :member, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /plans
   # GET /plans.json
   def index
