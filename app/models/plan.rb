@@ -5,4 +5,6 @@ class Plan < ActiveRecord::Base
   has_many :users, through: :plan_users
 
   validates :name, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 end
