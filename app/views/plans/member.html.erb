@@ -1,10 +1,11 @@
-
-
-<div class="progress">
-	<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width: 50%;">
-		 50%
+<% if params[:action] == "new" %>
+	<div class="progress">
+		<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" style="width: 50%;">
+			 50%
+		</div>
 	</div>
-</div>
+<% end %>
+
 
 <h1>STEP2　続いて参加するメンバーを決めましょう!</h1>
 <%= form_for @plan_user, url: add_member_plans_path do |f| %>
@@ -40,5 +41,10 @@
     <%= profile_img(member) %>
   <% end %>
   <br>
-<td><%=link_to "このメンバーでプランを作成する", plan_path(@plan_user.plan_id), class: 'btn btn-primary'%></td><br>
-※ メンバーはあとからでも変更することができます。
+
+<% if params[:action] == "new" %>
+	<td><%=link_to "このメンバーでプランを作成する", plan_path(@plan_user.plan_id), class: 'btn btn-primary'%></td><br>
+	※ メンバーはあとからでも変更することができます。
+<% else %>
+	<td><%=link_to "決定", plan_path(@plan_user.plan_id), class: 'btn btn-primary'%></td><br>
+<% end %>

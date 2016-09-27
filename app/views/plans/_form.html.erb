@@ -33,10 +33,10 @@
           </div>
         </div>
         <div class="actions">
-          <% if params[:action] == "edit" %>
-            <%= f.submit class: 'btn btn-primary', value: "決定" %>
-          <% else %>
+          <% if params[:action] == "new" %>
             <%= f.submit class: 'btn btn-primary', value: "次へ" %>
+          <% else %>
+            <%= f.submit class: 'btn btn-primary', value: "決定" %>
           <% end %>
         </div>
 
