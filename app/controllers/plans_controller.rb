@@ -170,7 +170,7 @@ class PlansController < ApplicationController
   def update
     respond_to do |format|
       if @plan.update(plan_params)
-        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
+        format.html { redirect_to @plan, notice: '基本情報を編集しました' }
         format.json { render :show, status: :ok, location: @plan }
       else
         format.html { render :edit }
