@@ -68,7 +68,7 @@
                       <br><li role="presentation"><%= button_to '基本情報を編集する', edit_plan_path(@plan), method: "get", class: "btn btn-info" %></li>
                     </ul>
                   </li>
-
+                      <% unless @members.nil? %>
                   <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                     メンバー <span class="caret"></span>
@@ -88,7 +88,7 @@
                     </li>
                   </ul>
                   </li>
-
+<% end %>
                 <% end %>
               <% end %>
 
