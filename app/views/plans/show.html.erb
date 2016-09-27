@@ -13,7 +13,7 @@
 
 
 		<div class="col-md-7">
-			<h3>場所を追加しましょう！</h3>
+			<!--<h3>場所を追加しましょう！</h3>-->
 			<%= form_for @place, url: add_plans_path, method: "post" do |f| %>
 				<% if @place.errors.any? %>
 					<div id="error_explanation">
@@ -33,10 +33,6 @@
 					<%= f.hidden_field :plan_id, value: @plan.id %>
 				</div>
 				<div class="field">
-					<%= f.label :address %>
-					<%= f.text_field :address %>
-				</div>
-				<div class="field">
 					<%= f.hidden_field :latitude %>
 				</div>
 				<div class="field">
@@ -45,25 +41,31 @@
 				<div class="field">
 					<%= f.hidden_field :route %>
 				</div>
+				<div class="form-inline">
+				<div class='input-group'>
+					<span class="input-group-addon">場所・住所</span>
+	        <%= f.text_field :address, class: 'form-control' %>
+				</div>
 
 					<%= f.fields_for :pins do |c| %>
-
-					<div class="field">
-						<%= c.label :comment %>(任意)
-						<%= c.text_field :comment %>
-					</div>
-
-					<div class="field">
-						<%= c.label :want %>
-						<%= c.radio_button :want, 0 %>低
-						<%= c.radio_button :want, 1, :checked => "checked" %>中
-						<%= c.radio_button :want, 2 %>高
-					</div>
+	        <!--  <div class='input-group'>
+							<span class="input-group-addon">コメント（任意）</span>
+	            <%= c.text_field :comment, class: 'form-control' %>
+	          </div> -->
+	          <div class='input-group'>
+	            <span class="input-group-addon">優先度</span>
+							<%= c.radio_button :want, 2 %>高
+							<%= c.radio_button :want, 1, :checked => "checked" %>中
+							<%= c.radio_button :want, 0 %>低
+	          </div>
 
 					<% end %>
+				<div class='input-group'>
 				<div class="actions">
 					<%= f.submit value: "追加", class: 'btn btn-primary'%>
 				</div>
+				</div>
+			</div>
 
 			<% end %>
 
