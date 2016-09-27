@@ -1,7 +1,7 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :member, :edit, :update, :destroy]
   before_action :authenticate_user!
-  
+
   # GET /plans
   # GET /plans.json
   def index
@@ -65,6 +65,7 @@ class PlansController < ApplicationController
   def member
     @plan_user = @plan.plan_users.build
     @members = @plan.users
+    @joined_members_ids = @plan.users.ids
   end
 
   def add_member
