@@ -66,7 +66,7 @@ class PlansController < ApplicationController
     @plan_user = @plan.plan_users.build
     @members = @plan.users
     @joined_members_ids = @plan.users.ids
-    binding.pry
+    @flg = params[:flg]
   end
 
   def add_member
@@ -155,7 +155,7 @@ class PlansController < ApplicationController
     respond_to do |format|
       if @plan.save
         PlanUser.create(plan_id: @plan.id, user_id: current_user.id)
-        format.html { redirect_to ({action: 'member', id: @plan.id }) }
+        format.html { redirect_to ({action: 'member', id: @plan.id , flg: 'new'}) }
       # format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
