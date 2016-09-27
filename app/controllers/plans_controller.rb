@@ -66,6 +66,7 @@ class PlansController < ApplicationController
     @plan_user = @plan.plan_users.build
     @members = @plan.users
     @joined_members_ids = @plan.users.ids
+    binding.pry
   end
 
   def add_member

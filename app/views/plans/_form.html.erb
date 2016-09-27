@@ -34,7 +34,7 @@
         </div>
         <div class="actions">
           <% if params[:action] == "new" %>
-            <%= f.submit class: 'btn btn-primary', value: "次へ" %>
+            <%= f.submit class: 'btn btn-primary', value: "次へ", name: "new" %>
           <% else %>
             <%= f.submit class: 'btn btn-primary', value: "決定" %>
           <% end %>
