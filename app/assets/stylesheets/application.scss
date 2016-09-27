@@ -49,3 +49,8 @@
    background:	rgba(0,0,0,0.4); /* 帯の透明度 */
    position:	absolute; /* 絶対位置指定 */
  }
+
+
+ .dropdown:hover > .dropdown-menu{
+  display: block;
+}
