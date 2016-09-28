@@ -14,14 +14,15 @@
       </ul>
     </div>
   <% end %>
-        <div class="field">
-          <%= f.label :name %><br>
+        <div class="field input-group">
+          <span class="input-group-addon">プラン名</span>
           <%= f.text_field :name %>
         </div>
-        <div class="field">
-          <%= f.label :area_id %><br>
+        <div class="field input-group">
+          <span class="input-group-addon">エリア</span>
           <%= f.collection_select :area_id, Area.all, :id, :name %>
         </div>
+期間
         <div class="form-inline">
           <div class='input-group date startdatepicker'>
             <%= f.text_field :start_date, class: 'form-control' %>
@@ -32,6 +33,7 @@
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
           </div>
         </div>
+        <br>
         <div class="actions">
           <% if params[:action] == "new" %>
             <%= f.submit class: 'btn btn-primary', value: "次へ", name: "new" %>
