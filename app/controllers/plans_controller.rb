@@ -12,10 +12,12 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @members = @plan.users
+    if @members.ids.include?(current_user.id)
     @place = Place.new
     @place.pins.build
     @places = @plan.places.order(:route)
-    @members = @plan.users
+
     i = 1
     @hash = Gmaps4rails.build_markers(@places) do |place, marker|
       marker.lat place.latitude
@@ -38,6 +40,10 @@ class PlansController < ApplicationController
       temp.push(hash[:lat])
       temp.push(hash[:lng])
       @point.push(temp)
+    end
+
+    else
+      render "plan_reference"
     end
 
   end
