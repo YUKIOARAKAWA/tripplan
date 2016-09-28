@@ -21,7 +21,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require moment/ja.js
-
+//= require markerclusterer_packaged
 
 // プランの開始日の設定(datetimepicker)
 var data = {'data-date-format': 'yyyy-MM-dd' };
