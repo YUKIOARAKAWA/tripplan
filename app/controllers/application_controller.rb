@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     top_mypage_path(current_user)
   end
 
-  # 検索フォーム用
+  # 検索フォーム用にプランのインスタンスが必要
   def set_plan
     @plan = Plan.new
   end
