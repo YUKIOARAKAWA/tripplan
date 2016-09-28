@@ -136,7 +136,7 @@ $(window).load(function(){
       '/places/reorder',
       post,
       function(data){
-        alert(data);
+    //    alert(data);
         callbacks(data);
         },
       'json');
@@ -289,7 +289,7 @@ point = data.point;
  //alert(i);
 	poli.push(new google.maps.LatLng( point[i][0], point[i][1] ));
 };
-		alert(poli);
+//		alert(poli);
   for (var i = 1; i < poli.length-1; i++) {
       wayPoints.push({
         location: poli[i],
@@ -322,7 +322,7 @@ point = data.point;
 			$("#" + i).text("⬇︎" + Math.floor( response.routes[0].legs[i].duration.value / 60) + "分" + "(" + Math.floor(response.routes[0].legs[i].distance.value / 1000 )+ "Km)" );
 		 	};
    directionsDisplay.setDirections(response);}
-	 alert(status);
+//	 alert(status);
    });
  }
 
