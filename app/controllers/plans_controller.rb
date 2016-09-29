@@ -13,7 +13,6 @@ class PlansController < ApplicationController
   # GET /plans/1.json
   def show
     @members = @plan.users
-    if @members.ids.include?(current_user.id)
     @place = Place.new
     @place.pins.build
     @places = @plan.places.order(:route)
@@ -42,6 +41,8 @@ class PlansController < ApplicationController
       @point.push(temp)
     end
 
+    if @members.ids.include?(current_user.id)
+      render "show"
     else
       render "plan_reference"
     end
