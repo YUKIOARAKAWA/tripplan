@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :member, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :member_only, only: [:member, :edit, :update, :destroy]
 
   # GET /plans
   # GET /plans.json
@@ -153,6 +154,7 @@ class PlansController < ApplicationController
 
   # GET /plans/1/edit
   def edit
+    @members = @plan.users
   end
 
   # POST /plans
