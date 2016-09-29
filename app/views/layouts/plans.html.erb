@@ -65,7 +65,10 @@
                       <li role="presentation"><b>日程：</b></li>
                       <li role="presentation"><b id = "min"><%= @plan.start_date %></b>-<b><%= @plan.end_date %></b></li>
                       <div id="max" class = "<%= @plan.end_date.tomorrow %>"></div>
-                      <br><li role="presentation"><%= button_to '基本情報を編集する', edit_plan_path(@plan), method: "get", class: "btn btn-info" %></li>
+                      <% if @members.ids.include?(current_user.id) %>
+                        <br>
+                        <li role="presentation"><%= button_to '基本情報を編集する', edit_plan_path(@plan), method: "get", class: "btn btn-info" %></li>
+                      <% end %>
                     </ul>
                   </li>
                       <% unless @members.nil? %>
@@ -83,7 +86,12 @@
                         <br>
                       	<%= profile_img(member) %>
                       <% end %>
-                      <br><td><%= button_to 'メンバーを追加する', member_plan_path(@plan), method: "get", class: "btn btn-info" %></td><br>
+                      <% if @members.ids.include?(current_user.id) %>
+                        <br>
+                        <td><%= button_to 'メンバーを追加する', member_plan_path(@plan), method: "get", class: "btn btn-info" %></td>
+                        <br>
+                      <% end %>
+
 
                     </li>
                   </ul>
