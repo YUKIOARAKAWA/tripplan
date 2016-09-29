@@ -79,7 +79,8 @@ class PlansController < ApplicationController
 
   def add_member
     @plan_user = PlanUser.new(plan_user_params)
-
+    @plan = @plan_user.plan
+    member_only
     respond_to do |format|
       if @plan_user.save
         # deliverメソッドを使って、メールを送信する
