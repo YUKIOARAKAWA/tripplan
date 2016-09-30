@@ -205,6 +205,26 @@ $(".testid").focusout(function(e) {
 //window.prompt("ユーザー名を入力してください", "Uese Name")
 
 
+//確認画面に遷移する前に、時間の項目が全て入力されていることを確認する。
+//未入力の項目がある場合、確認画面には遷移しない。
+document.getElementById( 'confirm' ).onclick = function( e ){
+  value = $(".testid")
+  flg = true;
+//console.log(value);
+ for (var i = 0; i < value.length; i++) {
+//     console.log(value[i].value);
+   if (value[i].value == "" )  {
+     flg = false;
+   };
+ };
+    if (!flg){
+      alert("未入力の項目があります")
+      return flg;
+    }
+};
+
+
+
 
 });
 
