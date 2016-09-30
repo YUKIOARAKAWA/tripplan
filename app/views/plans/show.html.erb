@@ -75,7 +75,7 @@
 				<th>action</th>
 				<th>FROM</th>
 				<th>TO</th>
-				<th>移動時間</th>
+				<th>時間(距離)</th>
         <!-- 緯度・経度は表示しない<th>緯度</th>-->
         <!-- 緯度・経度は表示しない<th>経度</th>-->
         <tr>
@@ -114,15 +114,15 @@
         <%i = i + 1%><% end %>
       </tbody>
       </table>
-			ドラッグ＆ドロップで経路を変更できます。<br>
-			時間、経路はブラウザを閉じても保存されます。<br><br>
-			<button type="button" id = "create_routes" class = 'btn btn-primary'>直線を引く</button>
-			<button type="button" id = "create_routes_time" class = 'btn btn-primary'>経路作成</button>
+			ドラッグ＆ドロップで経路を変更することで、移動時間/経路が自動で算出されます。<br>
+			入力された情報はブラウザを閉じても保存されます。<br><br>
+			<!--<button type="button" id = "create_routes" class = 'btn btn-primary'>直線を引く</button>
+			<button type="button" id = "create_routes_time" class = 'btn btn-primary'>経路作成</button>-->
     </div>
 	</div>
 </div>
 
-<%= link_to 'この経路で決定する', confirm_plan_path(@plan), class: 'btn btn-primary', style: 'color:white' %>
+<%= link_to 'この経路で決定', confirm_plan_path(@plan), class: 'btn btn-primary', style: 'color:white' %>
 
 <!--ここにdistanceの結果を描画する
 <div id="directions-result" style="width:600px; height:1000px"></div>
