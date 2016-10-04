@@ -71,3 +71,5 @@ gem 'bootstrap3-datetimepicker-rails'
 # PDF出力
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+
+gem 'dotenv-rails'
