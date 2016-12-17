@@ -23,6 +23,50 @@
 //= require moment/ja.js
 //= require markerclusterer_packaged
 
+
+
+
+  var url = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
+  var params = {
+    keyid: 'cae5974528b21caa3660751869674b23',
+    format: 'json',
+    latitude: 35.705518,
+    longitude: 139.649267,
+    range: 2,
+    hit_per_page: 200
+  };
+
+  function showResult(result){
+
+      if ( result.total_hit_count > 0 ) {
+        var res = '';
+        alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+        alert( result.hit_per_page + '取得件数\n' );
+        for ( var i in result.rest ){
+            res += result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
+        }
+        console.log(res);
+        console.log("生データ");
+        console.log(result);
+      } else {
+        alert( '検索結果が見つかりませんでした。' );
+      }
+    }
+
+  $(document).on('click', '.js--apply', function(){
+  //  params.keyid = $('.js--key').val();
+alert("s")
+$.getJSON(
+  url,
+  params,
+  function(result){
+  showResult(result);
+});
+  });
+
+
+
+
 // プランの開始日の設定(datetimepicker)
 var data = {'data-date-format': 'yyyy-MM-dd' };
 $(function(){
@@ -227,6 +271,7 @@ document.getElementById( 'confirm' ).onclick = function( e ){
 
 
 });
+
 
 
 
