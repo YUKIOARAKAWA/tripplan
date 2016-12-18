@@ -67,8 +67,23 @@
 			<% end %>
 
 		レストラン検索
-		<input type="text" placeholder="enter your access key here" class="js--key"><input type="button" value="apply" class="js--apply" />
+		<input type="text" placeholder="enter your access key here" class="js--key"><input type="button" value="レストラン検索" class="js--apply" />
 		レストラン検索
+
+
+
+
+
+		<!-- モーダルウィンドウを呼び出すボタン -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">食事スポットを検索</button>
+
+		<!-- モーダルウィンドウの中身 -->
+		<div class="modal fade" id="myModal">
+			<%= render partial: 'modal' %>
+		</div>
+
+
+
 
 
       <table class = "table">
