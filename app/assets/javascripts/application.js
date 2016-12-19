@@ -40,14 +40,15 @@
 
       if ( result.total_hit_count > 0 ) {
         var res = '';
-        alert( result.total_hit_count + '件の結果が見つかりました。\n' );
-        alert( result.hit_per_page + '取得件数\n' );
+  //      alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+  //      alert( result.hit_per_page + '取得件数\n' );
         for ( var i in result.rest ){
             res += result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
         }
-        console.log(res);
-        console.log("生データ");
+  //      console.log(res);
+  //      console.log("生データ");
         console.log(result);
+        $(".view").html(res);
       } else {
         alert( '検索結果が見つかりませんでした。' );
       }
