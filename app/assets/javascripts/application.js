@@ -26,21 +26,14 @@
 
 
 
-  var url = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
-  var params = {
-    keyid: 'cae5974528b21caa3660751869674b23',
-    format: 'json',
-    latitude: 35.705518,
-    longitude: 139.649267,
-    range: 2,
-    hit_per_page: 200
-  };
+
 
   function showResult(result){
 
       if ( result.total_hit_count > 0 ) {
         var res = '';
-  //      alert( result.total_hit_count + '件の結果が見つかりました。\n' );
+
+        alert( result.total_hit_count + '件の結果が見つかりました。\n' );
   //      alert( result.hit_per_page + '取得件数\n' );
         for ( var i in result.rest ){
             res += result.rest[i].name + ' ' + result.rest[i].url + ' ' + result.rest[i].access.line + ' ' + result.rest[i].access.station + ' ' + result.rest[i].access.walk + '分\n';
@@ -55,8 +48,24 @@
     }
 
   $(document).on('click', '.js--apply', function(){
+
+    var url = 'http://api.gnavi.co.jp/RestSearchAPI/20150630/?callback=?';
+
+    var range = $("input[name='range']:checked").val();
+    //alert(range)
+
+    var params = {
+      keyid: 'cae5974528b21caa3660751869674b23',
+      format: 'json',
+      latitude: 35.705518,
+      longitude: 139.649267,
+      range: range,
+      hit_per_page: 200
+    };
+
   //  params.keyid = $('.js--key').val();
-alert("s")
+
+
 $.getJSON(
   url,
   params,
