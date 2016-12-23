@@ -5,7 +5,7 @@ RSpec.describe Plan, :type => :model do
 
   describe "バリデーション" do
     before do
-      @plan = FactoryGirl.build(:plan)
+      @plan = FactoryGirl.create(:plan)
       puts "@planの中身"
       puts @plan.name
       puts Plan.all.count
