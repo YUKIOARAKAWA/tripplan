@@ -4,5 +4,6 @@ FactoryGirl.define do
   factory :place do
 #  factory :admin, class: Plan do
     address "沖縄城"
+    plan
   end
 end
