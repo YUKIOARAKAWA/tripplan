@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :plan do
-    title "MyString"
-    body "MyText"
-    published false
+#  factory :admin, class: Plan do
+    name "沖縄"
+    start_date Date.today
+    end_date Date.today + 7.day
   end
 end
