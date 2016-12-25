@@ -26,3 +26,19 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+ruby
+ruby 2.3.0
+
+rails
+Rails 4.2.6
+
+DB
+(PostgreSQL) 9.5.3
+
+マスタデータ作成
+bin/rake db:seed
+
+テスト環境
+Rspec + factory_girl + database_cleaner
