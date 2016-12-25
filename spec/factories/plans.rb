@@ -6,5 +6,6 @@ FactoryGirl.define do
     name "沖縄の旅"
     start_date Date.today
     end_date Date.today + 7.day
+    area_id 1
   end
 end

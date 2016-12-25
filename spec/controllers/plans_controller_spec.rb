@@ -5,14 +5,14 @@ RSpec.describe PlansController, :type => :controller do
 
   describe "GET index" do
     it "returns http success" do
-      get :index
+      get :index, plan: FactoryGirl.attributes_for(:plan)
       expect(response).to be_success
     end
   end
 
   describe "GET show" do
     it "returns http success" do
-      get :edit
+      get :show, id: FactoryGirl.create(:plan)
       expect(response).to be_success
     end
   end
