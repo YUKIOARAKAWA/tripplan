@@ -35,4 +35,16 @@ RSpec.describe Place, :type => :model do
           }
     end
   end
+
+  describe "インスタンスメソッド" do
+    context "set_route（プランの紐づく場所が２箇所登録されている場合、ルートは３を返すこと）" do
+      before do
+        @place1 = FactoryGirl.create(:place)
+        @plan = @place1.plan
+        @place2 = @plan.places.create((FactoryGirl.attributes_for(:place)))
+        @place = FactoryGirl.build(:place)
+      end
+      it { expect(@place.set_route(@plan.id)).to eq 3 }
+    end
+  end
 end
