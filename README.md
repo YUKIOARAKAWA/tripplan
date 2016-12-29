@@ -32,3 +32,6 @@ Rspec + factory_girl + database_cleaner
 プルリク前に
 ``` bundle exec rspec ```
 を実行しテスト結果がgreenであることを確認する
+
+## 現在heorkuで仮公開
+https://triplaning.herokuapp.com/
